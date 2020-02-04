@@ -19,7 +19,7 @@ InfoRoots has two groups of project stakeholders: team instructors and team memb
 In team members, there are four undergraduate students. They are Siwen Zhang, Joseph Om, Jianing Lin, and Lei Luo. Under the Scrum framework, Lei Luo functions as both the project owner and Scrum Master. All team members function as designers and programmers to develop the InfoRoots web platform.
 
 
-#####Major Features
+##### Major Features
 InfoRoots web platform is designed to investigate online articles. When online readers enter one article link on InfoRoots, they will see three major features that can help them determine whether the contents in the article are false. 
 
 The first feature is the authors’ information. It presents not only the background information of authors from Wikipedia sources but also reliability scores measured by our machine learning algorithm. The algorithm produces scores based on examining recent articles written by the authors. 
@@ -29,7 +29,7 @@ The second feature is the publisher’s information. It offers the professional 
 The third feature is the citation and content analysis. The analysis system pinpoints all citations in the original article and extracts relevant paragraphs from these citations. The relevant paragraphs are shown to readers when they click at each citation. As our users read through the article on InfoRoots, they can check two reliability factors. The first one is whether the cited information came from reliable publishers. The second one is whether the content in the citations is presented accurately in the original article. 
 
 
-#####Major Risks
+##### Major Risks
 InfoRoots has two potential risks. The first risk is related to the completion of InfoRoots. Each proposed feature requires a certain level of knowledge on machine learning and data scraping. Since all team members have little experience in developing major features mentioned above, they will spend the majority of their time exploring and researching phase. The final deliverable might contain uncompleted features. Shorter work cycles can mitigate this risk as it allows agile reviews and revises on developing features. 
 
 The second risk is that all proposed features require a lot of computation powers. To test major features, InfoRoots might spend a lot of money on subscribing to cloud computing services. If one of the major features costs expensive computing resources, the team might revise the expensive feature in order to save money. That is, three major features are highly subjected to changes.
