@@ -137,17 +137,6 @@ def citations_crawl(url, max_depth):
     p.join()
 
 
-# print the sum of two variables
-def fool(a, b):
-    '''
-    :param a, a integer
-           b, a integer
-
-    '''
-
-    print(a+b)
-
-
 
 if __name__ == '__main__':
     citations_crawl("https://www.nationalgeographic.com/science/2019/11/earth-tipping-point/#close", 2)

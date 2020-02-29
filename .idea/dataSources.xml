@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="inforoots@64.225.60.170" uuid="04b895fa-e574-4d51-b13e-47d6d52efb98">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://64.225.60.170:5432/inforoots</jdbc-url>
+    </data-source>
+  </component>
+</project>
