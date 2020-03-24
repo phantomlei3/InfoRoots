@@ -44,13 +44,14 @@ class Homepage extends React.Component {
         <div id="bottom">
           <div id="homepage-search-bar">
             <input
+              id="homepage-input"
               placeholder="Input the URL of the article you want to search..."
               value={this.state.searchQuery}
               type="text"
               onKeyPress={this.enterPressed}
               onChange={this.setSearchQuery}
             />
-            <button onClick={this.handleSearch}>
+            <button id="homepage-button" onClick={this.handleSearch}>
               <Icon icon={magnifyingGlass} style={{ color: "white" }} />
             </button>
           </div>

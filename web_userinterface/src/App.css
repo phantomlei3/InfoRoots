@@ -8,3 +8,8 @@
 .App {
   font-family: "Mechanical";
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}

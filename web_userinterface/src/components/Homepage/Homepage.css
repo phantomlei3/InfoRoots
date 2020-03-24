@@ -15,7 +15,7 @@
   background-color: #e0e0e0;
 }
 
-button {
+#homepage-button {
   position: absolute;
   right: -16px;
   top: 0px;
@@ -36,7 +36,7 @@ button:hover {
   opacity: 0.9;
 }
 
-input {
+#homepage-input {
   font-family: "Mechanical";
   font-size: 16px;
   height: 64px;
