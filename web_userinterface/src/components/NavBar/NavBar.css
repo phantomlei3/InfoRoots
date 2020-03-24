@@ -3,6 +3,7 @@
   background-color: #e0e0e0;
   height: 94px;
 }
+
 .navbar {
   position: relative;
   top: 0;
@@ -61,7 +62,7 @@
   width: 336px;
   grid-column-start: 1;
   grid-column-end: 3;
-  margin-left: 32px;
+  margin-left: 8px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -95,6 +96,7 @@
   #searchbar-container {
     height: 40%;
     width: 306px;
+    margin-left: 32px;
   }
   #menuimage {
     height: 44px;
@@ -103,42 +105,6 @@
 }
 
 @media (max-width: 950px) {
-  #searchbar-container {
-    height: 35%;
-    width: 276px;
-  }
-  #seacharticle-input-bar {
-    width: 276px;
-  }
-  #menuimage {
-    height: 32px;
-    width: 32px;
-  }
-}
-
-@media (max-width: 800px) {
-  #navbar-logo {
-    height: 32.4px;
-    width: 180px;
-  }
-  #searchbar-container {
-    height: 30%;
-    width: 180px;
-  }
-  #seacharticle-input-bar {
-    width: 180px;
-  }
-  #searcharticle-button {
-    position: absolute;
-    right: -1px;
-  }
-  #menuimage {
-    height: 28px;
-    width: 28px;
-  }
-}
-
-@media (max-width: 580px) {
   #searchbar-container {
     height: 35%;
     width: 276px;
@@ -173,6 +139,20 @@
     height: 28px;
     width: 28px;
     right: 24px;
+  }
+}
+
+@media (max-width: 580px) {
+  #searchbar-container {
+    height: 35%;
+    width: 140px;
+  }
+  #seacharticle-input-bar {
+    width: 140px;
+  }
+  #menuimage {
+    height: 32px;
+    width: 32px;
   }
 }
 
