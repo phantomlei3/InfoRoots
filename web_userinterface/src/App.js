@@ -6,7 +6,7 @@ import SearchArticle from "./components/SearchArticle/SearchArticle.js";
 function App() {
   return (
     <div className="App">
-      <SearchArticle />
+      <Homepage />
     </div>
   );
 }
