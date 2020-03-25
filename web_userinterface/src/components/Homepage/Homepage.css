@@ -107,3 +107,41 @@ input::-ms-clear {
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (max-width: 850px) {
+  #logo {
+    width: 328px;
+  }
+  #homepage-search-bar {
+    width: 552px;
+  }
+  #homepage-input {
+    font-size: 12px;
+  }
+  .footer {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  #homepage-search-bar {
+    width: 416px;
+  }
+}
+
+@media (max-width: 450px) {
+  #logo {
+    width: 256px;
+  }
+  #homepage-search-bar {
+    margin-top: 90px;
+    width: 296px;
+  }
+  #homepage-input {
+    height: 48px;
+    font-size: 8px;
+  }
+  .footer {
+    font-size: 11px;
+  }
+}
