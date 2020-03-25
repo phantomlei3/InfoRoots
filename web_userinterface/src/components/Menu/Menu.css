@@ -5,7 +5,7 @@
   position: absolute;
   right: 50px;
   top: 90px;
-  opacity: 0.9;
+  opacity: 0.97;
   z-index: 200;
   -webkit-animation: fadein 0.7s linear;
   -moz-animation: fadein 0.7s linear;
@@ -68,7 +68,7 @@ a:visited {
     opacity: 0;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.97;
   }
 }
 @-moz-keyframes fadein {
@@ -76,7 +76,7 @@ a:visited {
     opacity: 0;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.97;
   }
 }
 @-webkit-keyframes fadein {
@@ -84,7 +84,7 @@ a:visited {
     opacity: 0;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.97;
   }
 }
 @-ms-keyframes fadein {
@@ -92,7 +92,7 @@ a:visited {
     opacity: 0;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.97;
   }
 }
 @-o-keyframes fadein {
@@ -100,6 +100,6 @@ a:visited {
     opacity: 0;
   }
   to {
-    opacity: 0.9;
+    opacity: 0.97;
   }
 }
