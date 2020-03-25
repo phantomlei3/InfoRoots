@@ -37,24 +37,28 @@ class NavBar extends React.Component {
   render() {
     return (
       <div id="container">
-        <div class="navbar">
+        <div className="navbar">
           <div id="searchbar-container">
             <input
-              id="searcharticle-input-bar"
+              id="searchbar-input"
               value={this.state.searchQuery}
               type="text"
               onKeyPress={this.enterPressed}
               onChange={this.setSearchQuery}
             />
-            <button id="searcharticle-button" onClick={this.handleSearch}>
-              <Icon icon={magnifyingGlass} style={{ color: "white" }} />
+            <button id="searchbar-button" onClick={this.handleSearch}>
+              <Icon
+                icon={magnifyingGlass}
+                style={{ color: "white" }}
+                alt="Search logo"
+              />
             </button>
           </div>
           <div id="logo-container">
             <img id="navbar-logo" src={InfoRootsLogo} alt="InfoRoots Logo" />
           </div>
           <div id="menuimage-container">
-            <img id="menuimage" src={MenuImage} />
+            <img id="menuimage" src={MenuImage} alt="Menu" />
           </div>
         </div>
       </div>

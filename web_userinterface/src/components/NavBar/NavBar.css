@@ -33,36 +33,36 @@
   margin-right: auto;
 }
 
-#searcharticle-input-bar {
+#searchbar-input {
   position: absolute;
   height: 100%;
-  width: 84%;
+  width: 100%;
   font-family: "Mechanical";
   border-radius: 16px;
-  border: none;
+  box-shadow: 0 0 0 1pt grey;
   outline: none;
+  border: none;
   padding-left: 16px;
 }
 
-#searcharticle-button {
+#searchbar-button {
   position: absolute;
-  right: 10%;
+  right: -16px;
   height: 100%;
-  width: 13%;
+  width: 15%;
   border: none;
   outline: none;
-  font-weight: bold;
   border-radius: 0px 16px 16px 0px;
   background-color: #787878;
 }
 
 #searchbar-container {
   position: relative;
-  height: 45%;
-  width: 336px;
+  height: 48%;
+  width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
-  margin-left: 8px;
+  margin-left: 16px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -94,9 +94,7 @@
     width: 240px;
   }
   #searchbar-container {
-    height: 40%;
-    width: 306px;
-    margin-left: 32px;
+    margin-left: 40px;
   }
   #menuimage {
     height: 44px;
@@ -107,10 +105,6 @@
 @media (max-width: 950px) {
   #searchbar-container {
     height: 35%;
-    width: 276px;
-  }
-  #seacharticle-input-bar {
-    width: 276px;
   }
   #menuimage {
     height: 32px;
@@ -125,15 +119,7 @@
   }
   #searchbar-container {
     height: 30%;
-    width: 130px;
-    margin-left: 10px;
-  }
-  #seacharticle-input-bar {
-    width: 130px;
-  }
-  #searcharticle-button {
-    position: absolute;
-    right: -1px;
+    margin-left: 16px;
   }
   #menuimage {
     height: 28px;
@@ -143,13 +129,6 @@
 }
 
 @media (max-width: 580px) {
-  #searchbar-container {
-    height: 35%;
-    width: 140px;
-  }
-  #seacharticle-input-bar {
-    width: 140px;
-  }
   #menuimage {
     height: 32px;
     width: 32px;
@@ -164,17 +143,10 @@
   }
   #searchbar-container {
     height: 25%;
-    width: 80px;
-    min-width: 40px;
     margin-left: 8px;
   }
-  #searcharticle-input-bar {
-    width: 80px;
-  }
-  #searcharticle-button {
-    position: absolute;
-    right: -16px;
-    width: 24px;
+  #searchbar-button {
+    width: 20%;
   }
   #menuimage {
     height: 26px;
