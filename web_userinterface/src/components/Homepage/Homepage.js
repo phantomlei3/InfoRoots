@@ -60,6 +60,7 @@ class Homepage extends React.Component {
               href="https://github.com/phantomlei3/InfoRoots"
               id="about"
               target="_blank"
+              rel="noopener noreferrer"
             >
               About
             </a>
