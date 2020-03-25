@@ -1,0 +1,105 @@
+#menu {
+  background-color: white;
+  height: 140px;
+  width: 140px;
+  position: absolute;
+  right: 50px;
+  top: 90px;
+  opacity: 0.9;
+  z-index: 200;
+  -webkit-animation: fadein 0.7s linear;
+  -moz-animation: fadein 0.7s linear;
+  -ms-animation: fadein 0.7s linear;
+  -o-animation: fade 0.7s linear;
+  animation: fadein 0.7s linear;
+}
+
+#drop-down {
+  height: 90%;
+  padding-left: 16px;
+  padding-top: 10px;
+}
+
+#option {
+  position: relative;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+a:visited {
+  color: black;
+}
+
+#arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
+  opacity: 0.9;
+  position: absolute;
+  right: 0;
+  top: -15px;
+}
+
+@media (max-width: 950px) {
+  #menu {
+    right: 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  #menu {
+    right: 25px;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+@-ms-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+@-o-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}

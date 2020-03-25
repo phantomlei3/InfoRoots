@@ -4,11 +4,15 @@ import { Icon } from "@iconify/react";
 import magnifyingGlass from "@iconify/icons-oi/magnifying-glass";
 import InfoRootsLogo from "../../static/logo.png";
 import MenuImage from "../../static/menu.svg";
+import Menu from "../Menu/Menu.js";
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchQuery: "" };
+    this.state = {
+      searchQuery: "",
+      menuToggled: false
+    };
   }
 
   // Function to handle searching of a URL on the homepage
@@ -34,12 +38,22 @@ class NavBar extends React.Component {
     }
   };
 
+  // Function to handle toggling the menu
+  toggleMenu = () => {
+    if (this.state.menuToggled === false) {
+      this.setState({ menuToggled: true });
+    } else {
+      this.setState({ menuToggled: false });
+    }
+  };
+
   render() {
     return (
       <div id="container">
         <div className="navbar">
           <div id="searchbar-container">
             <input
+              placeholder="https://yourarticle..."
               id="searchbar-input"
               value={this.state.searchQuery}
               type="text"
@@ -58,8 +72,14 @@ class NavBar extends React.Component {
             <img id="navbar-logo" src={InfoRootsLogo} alt="InfoRoots Logo" />
           </div>
           <div id="menuimage-container">
-            <img id="menuimage" src={MenuImage} alt="Menu" />
+            <img
+              id="menuimage"
+              src={MenuImage}
+              alt="Menu"
+              onClick={this.toggleMenu}
+            />
           </div>
+          {this.state.menuToggled && <Menu />}
         </div>
       </div>
     );
