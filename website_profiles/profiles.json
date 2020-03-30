@@ -1,0 +1,34 @@
+{
+    "www.sfchronicle.com": {
+        "domain": "www.sfchronicle.com",
+        "name": "San Francisco Chronicle",
+        "article_title": "h1.header-title",
+        "article_content": "main.main section.body p",
+        "author_name": "span.header-authors-name",
+        "author_page_link": "a.header-authors-url",
+        "author_intro": "div.auth_main div.about_auth p",
+        "author_article_list": "div.article_list div.article_list_item h2.headline a"
+    },
+
+    "www.latimes.com": {
+        "domain": "www.latimes.com",
+        "name": "Los Angeles Times",
+        "article_title": "h1.ArticlePage-headline",
+        "article_content": "div.ArticlePage-articleBody div.RichTextArticleBody div.RichTextArticleBody-body p",
+        "author_name": "div.ArticlePage-authorName a span",
+        "author_page_link": "div.ArticlePage-authors div.ArticlePage-authorName a",
+        "author_intro": "div.AuthorPage-fullBiography div.AuthorPage-fullBiography-content p",
+        "author_article_list": "div.PromoSmall-content  div.PromoSmall-titleContainer  div.PromoSmall-title a"
+    },
+
+    "www.nytimes.com": {
+        "domain": "www.nytimes.com",
+        "name": "The New York Times",
+        "article_title": "span.css-fwqvlz",
+        "article_content": "section.meteredContent div.css-1fanzo5 div.css-53u6y8 p",
+        "author_name": "span.last-byline",
+        "author_page_link": "div.css-1baulvz p.css-1fv7b6t a.css-brehiz",
+        "author_intro": "h2.css-n6o8m2 span p",
+        "author_article_list": "div.css-1cp3ece div.css-1l4spti a"
+    }
+}
