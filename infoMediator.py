@@ -15,7 +15,7 @@ class infoMediator:
         # TCP connection on local host 5555
         context = zmq.Context()
         self.socket = context.socket(zmq.REP)
-        self.socket.bind("tcp://127.0.0.1:5555")
+        self.socket.bind("tcp://*:5555")
 
         # status indicator
         self.URL_status = False
@@ -35,7 +35,7 @@ class infoMediator:
             command = self.socket.recv()
             if str(command) == "STOP":
                 return
-            self.control_center(str(command))
+            self.control_center(command.decode("utf-8"))
 
 
     def control_center(self, command):
@@ -87,7 +87,7 @@ class infoMediator:
         '''
         @ send "Error" if command is not recognized 
         '''
-        self.socket.send("Error")
+        self.socket.send_string("Error")
 
         return
 
