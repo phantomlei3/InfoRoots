@@ -1,0 +1,13 @@
+{
+  "name": "web_backend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "history": "^4.10.1",
+    "react-router-dom": "^5.1.2",
+    "zeromq": "^5.2.0"
+  }
+}
