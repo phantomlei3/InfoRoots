@@ -3,6 +3,7 @@ import unidecode
 import re
 import psycopg2
 import psycopg2.extras
+from PostgreSQL.database import database
 
 class authorSpide(scrapy.Spider):
     '''
@@ -14,11 +15,10 @@ class authorSpide(scrapy.Spider):
     def __init__(self, **kw):
         super(authorSpide, self).__init__(**kw)
         self.id = kw.get('id')  # id used for this data in PostgreSQL
-        self.url = kw.get('url')  # one URL of author page
+        self.url = kw.get('author_page_link')  # the URL of author page
         self.author_name = kw.get('author_name')
         self.profile = kw.get('profile') # profile of crawler for this website
-        self.conn = psycopg2.connect(kw.get('database')) # get Database to store data
-        self.cursor = self.conn.cursor()
+        self.database = database() # get Database to store data
 
 
     def start_requests(self):
@@ -40,8 +40,6 @@ class authorSpide(scrapy.Spider):
         Extract article title, article content, author name, author page and publisher name from one URL
         Update author author_article_list if exist conflict
         '''
-        insert_command = "INSERT INTO authors(id, author_name, author_intro, author_article_list) " \
-                         "VALUES (%s, %s, %s, %s) ON CONFLICT DO UPDATE SET author_article_list=EXCLUDED.author_article_list"
 
         # extract author introduction
         author_introduction = "None"
@@ -54,17 +52,21 @@ class authorSpide(scrapy.Spider):
         author_article_list = response.css(self.profile["author_article_list"]+"::attr(href)").extract() # tested
 
         # if URLs in article list does not have domain name, add domain name
-        if author_article_list is not None and self.profile['domain'] not in author_article_list[0]:
-            author_article_list = self.add_domain_to_article_list(author_article_list)
+        new_author_article_list = list()
+        if author_article_list is not None:
+            for article_link in author_article_list:
+                if self.profile["domain"] not in article_link:
+                    new_author_article_list.append(self.add_domain_to_article_link(article_link))
+                else:
+                    new_author_article_list.append(article_link)
 
         # convert python string list to PostgreSQl text array
         postgreSQL_article_array = self.article_list_to_postgreSQL(author_article_list)
 
         # store information in PostgreSQL authors Table
-        self.cursor.execute(insert_command, [self.id, self.author_name, author_introduction, author_article_list])
+        self.database.insert_author(self.id, self.author_name, author_introduction, author_article_list)
 
-        # commit stored results
-        self.conn.commit()
+
 
 
     def get_clean_author_introduction(self, author_introduction):
@@ -82,14 +84,14 @@ class authorSpide(scrapy.Spider):
                 clean_author_introduction += clean_paraggraph + " "
         return clean_author_introduction.strip()
 
-    def add_domain_to_article_list(self, article_lists):
+    def add_domain_to_article_link(self, URL):
         '''
-        Add domain to a list of article URLs because they do not have complete URLs
+        Add domain to one article URLsbecause they do not have complete URLs
 
-        :param article_lists: a list of article URLs that require to add domain
-        :return: a list of article URLs that have domain
+        :param article_link: one article URL that require to add domain
+        :return: one article URL that have domain
         '''
-        return [self.profile['domain']+URL for URL in article_lists]
+        return self.profile['domain']+URL
 
     def article_list_to_postgreSQL(self, article_lists):
         '''
