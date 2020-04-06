@@ -3,8 +3,8 @@
 from multiprocessing import Process
 import hashlib
 import json
-import psycopg2
-import psycopg2.extras
+import unidecode
+
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from PostgreSQL.database import database
@@ -91,8 +91,8 @@ class article:
             if article_credibility is None:
                 # obtain article credibility information through NELAdapter
                 # solve unicode issue by ignoring unrecognized codes
-                NELA_title = article_dict["article_title"].encode("utf-8").decode("utf-8", "ignore")
-                NELA_content = article_dict["article_content"].encode("utf-8").decode("utf-8", "ignore")
+                NELA_title = unidecode.unidecode(article_dict["article_title"])
+                NELA_content = unidecode.unidecode(article_dict["article_content"])
                 NELA_article = NELAdapter(NELA_title, NELA_content)
                 self.db.insert_article_credibility(self.article_id, NELA_article.get_reliability_score(), NELA_article.get_bias_score())
                 article_credibility = self.db.lookup_article_credibility(self.article_id)
