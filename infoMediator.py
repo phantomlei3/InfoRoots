@@ -54,9 +54,9 @@ class infoMediator:
             self.URL = command.split(" ")[1]
             self.process_URL()
             if self.URL_status:
-                self.socket.send("Okey")
+                self.socket.send_string("Okey")
             else:
-                self.socket.send("Failed")
+                self.socket.send_string("Failed")
 
             return
         '''
@@ -67,7 +67,7 @@ class infoMediator:
         '''
         if command == "Article" and self.URL_status:
             article_cotent = self.get_article_content()
-            self.socket.send(article_cotent)
+            self.socket.send_string(article_cotent)
 
             return
 
@@ -79,7 +79,7 @@ class infoMediator:
         '''
         if command == "Author card" and self.URL_status:
             author_card = self.get_author_card()
-            self.socket.send(author_card)
+            self.socket.send_string(author_card)
 
             return
 
