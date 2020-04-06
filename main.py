@@ -3,10 +3,6 @@ from Testing.test_authorCard import *
 
 if __name__ == '__main__':
 
-    # database connection setup
-    conn_string = "host='64.225.60.170' port='5432' dbname='inforoots' user='lei' password='971203'"
-
-    test_id = "test1"
 
     test_urls = [
         "https://www.nytimes.com/2020/02/17/world/asia/coronavirus-westerdam-cambodia-hun-sen.html?action=click&module=Top%20Stories&pgtype=Homepage",

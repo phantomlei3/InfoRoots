@@ -11,7 +11,7 @@ class database:
 
 
     def __init__(self):
-        self.conn = psycopg2.connect("host='64.225.60.170' port='5432' dbname='inforoots' user='lei' password='971203'")
+        self.conn = psycopg2.connect("host='127.0.0.1' port='5432' dbname='inforoots' user='lei' password='971203'")
         self.cursor = self.conn.cursor()
 
 
