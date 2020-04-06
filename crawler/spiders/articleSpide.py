@@ -3,6 +3,8 @@ import unidecode
 import re
 import psycopg2
 import psycopg2.extras
+from PostgreSQL.database import database
+
 
 class articleSpide(scrapy.Spider):
     '''
@@ -15,9 +17,8 @@ class articleSpide(scrapy.Spider):
         super(articleSpide, self).__init__(**kw)
         self.id = kw.get('id')  # id used for this data in PostgreSQL
         self.url = kw.get('url')  # one URL from user input
+        self.database = database()
         self.profile = kw.get('profile') # profile of crawler for this website
-        self.conn = psycopg2.connect(kw.get('database'))
-        self.cursor = self.conn.cursor()
 
 
     def start_requests(self):
@@ -40,8 +41,6 @@ class articleSpide(scrapy.Spider):
         '''
         Extract article title, article content, author name, author page and publisher name from one URL
         '''
-        insert_command = "INSERT INTO articles(ID, ARTICLE_TITLE, ARTICLE_CONTENT, PUBLISHER_NAME, AUTHOR_NAME, AUTHOR_PAGE_LINK) " \
-                         "VALUES (%s, %s, %s, %s, %s, %s)"
 
         # article title and content
         article_title = response.css(self.profile["article_title"]+"::text").get().strip()  # tested
@@ -51,15 +50,12 @@ class articleSpide(scrapy.Spider):
         publisher_name = self.profile["name"] # tested
 
         # author information
-        author_name = response.css(self.profile["author_name"]).get() # tested
+        author_name = response.css(self.profile["author_name"]+"::text").get() # tested
         author_page_link = response.css(self.profile["author_page_link"]).attrib["href"].strip("//") # tested
 
         # store information in PostgreSQL articles Table
-        self.cursor.execute(insert_command, [self.id, article_title, article_content,
-                                             publisher_name, author_name, author_page_link])
-
-        # commit stored results
-        self.conn.commit()
+        self.database.insert_article(self.id, article_title, article_content,
+                                             publisher_name, author_name, author_page_link)
 
 
     def get_clean_article_contents(self, article_content_html):

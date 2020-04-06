@@ -10,7 +10,7 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = 'crawler'
-LOG_LEVEL = "CRITICAL"
+# LOG_LEVEL = "CRITICAL"
 
 SPIDER_MODULES = ['crawler.spiders']
 NEWSPIDER_MODULE = 'crawler.spiders'
@@ -22,7 +22,7 @@ DOWNLOADER_MIDDLEWARES = {
    'scrapy_crawlera.CrawleraMiddleware': 610
 }
 
-CRAWLERA_APIKEY = '72b51cf74c864e0e9511aa12c0dad3fa'
+CRAWLERA_APIKEY = '44b1b2e26e44466b8228d7ae3cba50a9'
 CRAWLERA_ENABLED = True
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
