@@ -88,6 +88,25 @@ class authorCard:
         p.start()
         p.join()
 
+    def sum_list_scores(self, score_list):
+        '''
+        :return:
+        '''
+
+        avg_score = 0
+        score_length = 0
+        for score in score_list:
+            if score >= 0:
+                avg_score += score
+                score_length += 1
+
+        if score_length != 0:
+            return avg_score / score_length
+        else:
+            return -1
+
+
+
     def process_author_credibility(self, author_article_list):
         '''
         helper function for get
@@ -108,9 +127,13 @@ class authorCard:
             accumlated_reliability.append(article_result["article_reliability"])
             accumlated_bias.append(article_result["article_bias"])
 
+            print(accumlated_reliability)
+            print(accumlated_bias)
+
         if len(accumlated_reliability) != 0:
-            avg_reliability = sum(accumlated_reliability) / len(accumlated_reliability)
-            avg_bias = sum(accumlated_bias) / len(accumlated_bias)
+
+            avg_reliability = self.sum_list_scores(accumlated_reliability)
+            avg_bias = self.sum_list_scores(accumlated_bias)
         else:
             # -1 represents Not available reliability/bias
             avg_reliability = -1
