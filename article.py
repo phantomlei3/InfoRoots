@@ -93,7 +93,7 @@ class article:
                 # solve unicode issue by ignoring unrecognized codes
                 NELA_title = article_dict["article_title"].encode("utf-8").decode("utf-8", "ignore")
                 NELA_content = article_dict["article_content"].encode("utf-8").decode("utf-8", "ignore")
-                NELA_article = NELAdapter(article_dict["article_title"], article_dict["article_content"])
+                NELA_article = NELAdapter(NELA_title, NELA_content)
                 self.db.insert_article_credibility(self.article_id, NELA_article.get_reliability_score(), NELA_article.get_bias_score())
                 article_credibility = self.db.lookup_article_credibility(self.article_id)
 
