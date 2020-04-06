@@ -33,7 +33,9 @@ class infoMediator:
         '''
         while(True):
             command = self.socket.recv()
-            self.control_center(command)
+            if str(command) == "STOP":
+                return
+            self.control_center(str(command))
 
 
     def control_center(self, command):
