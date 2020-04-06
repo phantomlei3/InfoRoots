@@ -2,18 +2,43 @@ import React from "react";
 import "./SearchArticle.css";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
+import { getArticle, getAuthor } from "../../api.js";
 
 class SearchArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Red Cross or BlackCross",
-      author: "Dr.Marshall",
-      publisher: "People's Publishing House",
-      articleText:
-        "Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.Chongqing, China The Wuhan Red Cross and Hubei provincial Red Cross have come under fire after donations of crucial medical supplies from across China failed to arrive at the hospitals on the front lines of a coronavirus outbreak that has killed more than 300 people.",
-      authorCardToggled: false
+      url: decodeURIComponent(this.props.match.params.articleUrl),
+      title: "",
+      author: "",
+      publisher: "",
+      articleText: "",
+      authorCardToggled: false,
+      author_name: "",
+      author_introduction: "",
+      author_reliability_score: 0
     };
+
+    // Obtain article information
+    getArticle(this.state.url).then(res => {
+      this.setState({
+        title: res.data.article_title,
+        articleText: res.data.article_content,
+        author: res.data.author_name,
+        publisher: res.data.publisher_name
+      });
+    });
+
+    // Obtain author information
+    getAuthor(this.state.url).then(res => {
+      this.setState({
+        author_name: res.data.author_name,
+        author_introduction: res.data.author_introduction,
+        author_reliability_score: res.data.author_reliability_score
+      });
+    });
+
+    console.log(this.state.author);
   }
 
   // Function to handle toggling the Author Card
@@ -39,9 +64,9 @@ class SearchArticle extends React.Component {
               </div>
               {this.state.authorCardToggled && (
                 <AuthorCard
-                  author={this.state.author}
-                  description="His interests are in decision making from data in complex systems, including machine learning, computational finance. He enjoys poker bridge squash..."
-                  credibility={4.5}
+                  author={this.state.author_name}
+                  description={this.state.author_introduction}
+                  credibility={this.state.author_reliability_score}
                   authorLink="http://google.com"
                 />
               )}

@@ -1,14 +1,17 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import "./Homepage.css";
 import { Icon } from "@iconify/react";
 import magnifyingGlass from "@iconify/icons-oi/magnifying-glass";
 import InfoRootsLogo from "../../static/logo.png";
+import { processUserSearch } from "../../api.js";
 
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: ""
+      searchQuery: "",
+      articleSearched: false
     };
   }
 
@@ -18,7 +21,22 @@ class Homepage extends React.Component {
       return;
     }
 
-    console.log("Searched: '" + this.state.searchQuery + "'");
+    processUserSearch(this.state.searchQuery).then(res => {
+      if (res.data === "Okey") {
+        this.setState({ articleSearched: true });
+      }
+    });
+  };
+
+  // Render article page
+  renderArticlePage = () => {
+    if (this.state.articleSearched) {
+      return (
+        <Redirect
+          to={"/article/" + encodeURIComponent(this.state.searchQuery)}
+        />
+      );
+    }
   };
 
   setSearchQuery = event => {
@@ -38,6 +56,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <div>
+        {this.renderArticlePage()}
         <div id="top">
           <img src={InfoRootsLogo} id="logo" alt="InfoRoots Logo" />
         </div>

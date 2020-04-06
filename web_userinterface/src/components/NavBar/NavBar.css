@@ -24,6 +24,10 @@
   top: 47%;
   transform: translateY(-50%);
 }
+#navbar-logo:hover {
+  cursor: pointer;
+  opacity: 0.4;
+}
 
 #logo-container {
   height: 100%;
