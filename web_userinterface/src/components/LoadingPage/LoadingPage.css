@@ -3,10 +3,13 @@ h1 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 40px;
-  color:#616161;
+  color: #616161;
   font-size: 16px;
-  letter-spacing: 2.22px; 
+  letter-spacing: 2.22px;
+}
 
+.loading {
+  margin-top: 10%;
 }
 
 .timer {

@@ -33,7 +33,10 @@ class Homepage extends React.Component {
     if (this.state.articleSearched) {
       return (
         <Redirect
-          to={"/article/" + encodeURIComponent(this.state.searchQuery)}
+          to={{
+            pathname: "/loading",
+            state: { url: encodeURIComponent(this.state.searchQuery) }
+          }}
         />
       );
     }

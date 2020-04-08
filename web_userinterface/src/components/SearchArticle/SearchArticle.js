@@ -2,43 +2,22 @@ import React from "react";
 import "./SearchArticle.css";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
-import { getArticle, getAuthor } from "../../api.js";
 
 class SearchArticle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       url: decodeURIComponent(this.props.match.params.articleUrl),
-      title: "",
-      author: "",
-      publisher: "",
-      articleText: "",
-      authorCardToggled: false,
-      author_name: "",
-      author_introduction: "",
-      author_reliability_score: 0
+      title: this.props.location.state.title,
+      author: this.props.location.state.author,
+      publisher: this.props.location.state.publisher,
+      articleText: this.props.location.state.articleText,
+      authorCardToggled: this.props.location.state.authorCardToggled,
+      author_name: this.props.location.state.author_name,
+      author_introduction: this.props.location.state.author_introduction,
+      author_reliability_score: this.props.location.state
+        .author_reliability_score
     };
-
-    // Obtain article information
-    getArticle(this.state.url).then(res => {
-      this.setState({
-        title: res.data.article_title,
-        articleText: res.data.article_content,
-        author: res.data.author_name,
-        publisher: res.data.publisher_name
-      });
-    });
-
-    // Obtain author information
-    getAuthor(this.state.url).then(res => {
-      this.setState({
-        author_name: res.data.author_name,
-        author_introduction: res.data.author_introduction,
-        author_reliability_score: res.data.author_reliability_score
-      });
-    });
-
-    console.log(this.state.author);
   }
 
   // Function to handle toggling the Author Card
