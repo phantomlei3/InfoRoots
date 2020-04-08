@@ -26,7 +26,7 @@ class AuthorCard extends React.Component {
           <Rater
             total={5}
             interactive={false}
-            rating={this.props.credibility}
+            rating={this.props.credibility * 5}
           />
         </div>
       </div>
