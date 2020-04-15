@@ -68,6 +68,18 @@ span {
   font-size: 24px;
 }
 
+#publisher-text {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#publisher-text:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 #article-container {
   height: 46%;
   width: 50%;

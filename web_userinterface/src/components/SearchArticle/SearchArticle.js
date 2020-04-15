@@ -2,6 +2,7 @@ import React from "react";
 import "./SearchArticle.css";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
+import PublisherCard from "../PublisherCard/PublisherCard.js";
 
 class SearchArticle extends React.Component {
   constructor(props) {
@@ -12,11 +13,12 @@ class SearchArticle extends React.Component {
       author: this.props.location.state.author,
       publisher: this.props.location.state.publisher,
       articleText: this.props.location.state.articleText,
-      authorCardToggled: this.props.location.state.authorCardToggled,
       author_name: this.props.location.state.author_name,
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
-        .author_reliability_score
+        .author_reliability_score,
+      authorCardToggled: false,
+      publisherCardToggled: false
     };
   }
 
@@ -26,6 +28,15 @@ class SearchArticle extends React.Component {
       this.setState({ authorCardToggled: true });
     } else {
       this.setState({ authorCardToggled: false });
+    }
+  };
+
+  // Function to handle toggling the Publisher Card
+  togglePublisherCard = () => {
+    if (this.state.publisherCardToggled === false) {
+      this.setState({ publisherCardToggled: true });
+    } else {
+      this.setState({ publisherCardToggled: false });
     }
   };
 
@@ -51,7 +62,18 @@ class SearchArticle extends React.Component {
               )}
             </div>
             <div id="publisher-container">
-              Publisher: <span>{this.state.publisher}</span>
+              Publisher:
+              <div id="publisher-text" onClick={this.togglePublisherCard}>
+                {this.state.publisher}
+              </div>
+              {this.state.publisherCardToggled && (
+                <PublisherCard
+                  publisher="People's Publishing House"
+                  description="A large scale publishing house in China. It was established in March 1951, and was attached to the China Publishing Group."
+                  credibility={0.7}
+                  publisherLink="http://google.com"
+                />
+              )}
             </div>
           </div>
         </div>
