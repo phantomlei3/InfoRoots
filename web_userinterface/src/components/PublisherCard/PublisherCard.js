@@ -8,7 +8,7 @@ class PublisherCard extends React.Component {
     return (
       <div className="publisher-card">
         <div id="publisher">
-          <div id="publisher-name">{this.props.publisher}</div>
+          <div id="publisher-name">{this.props.publisher_name}</div>
           <div id="publisher-profile-link">
             <a
               id="publisher-link-a"
@@ -16,18 +16,14 @@ class PublisherCard extends React.Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              See verified profile
+              View publisher site
             </a>
           </div>
         </div>
-        <div id="description">{this.props.description}</div>
+        <div id="description">{this.props.publisher_introduction}</div>
         <div id="credibility">
           credibility
-          <Rater
-            total={5}
-            interactive={false}
-            rating={this.props.credibility * 5}
-          />
+          <Rater total={5} interactive={false} rating={0.8 * 5} />
         </div>
       </div>
     );

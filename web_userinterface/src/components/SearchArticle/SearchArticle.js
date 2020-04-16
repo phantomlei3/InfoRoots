@@ -10,13 +10,13 @@ class SearchArticle extends React.Component {
     this.state = {
       url: decodeURIComponent(this.props.match.params.articleUrl),
       title: this.props.location.state.title,
-      author: this.props.location.state.author,
-      publisher: this.props.location.state.publisher,
       articleText: this.props.location.state.articleText,
       author_name: this.props.location.state.author_name,
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
         .author_reliability_score,
+      publisher_name: this.props.location.state.publisher_name,
+      publisher_introduction: this.props.location.state.publisher_introduction,
       authorCardToggled: false,
       publisherCardToggled: false
     };
@@ -50,7 +50,7 @@ class SearchArticle extends React.Component {
             <div id="author-container">
               Author:
               <div id="author-text" onClick={this.toggleAuthorCard}>
-                {this.state.author}
+                {this.state.author_name}
               </div>
               {this.state.authorCardToggled && (
                 <AuthorCard
@@ -64,12 +64,12 @@ class SearchArticle extends React.Component {
             <div id="publisher-container">
               Publisher:
               <div id="publisher-text" onClick={this.togglePublisherCard}>
-                {this.state.publisher}
+                {this.state.publisher_name}
               </div>
               {this.state.publisherCardToggled && (
                 <PublisherCard
-                  publisher="People's Publishing House"
-                  description="A large scale publishing house in China. It was established in March 1951, and was attached to the China Publishing Group."
+                  publisher_name={this.state.publisher_name}
+                  publisher_introduction={this.state.publisher_introduction}
                   credibility={0.7}
                   publisherLink="http://google.com"
                 />

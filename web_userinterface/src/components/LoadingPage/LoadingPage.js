@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Redirect } from "react-router-dom";
-import { getArticle, getAuthor } from "../../api.js";
-
+import { getArticle, getAuthor, getPublisher } from "../../api.js";
 import "./LoadingPage.css";
 
 class LoadingPage extends React.Component {
@@ -18,6 +17,8 @@ class LoadingPage extends React.Component {
       author_name: "",
       author_introduction: "",
       author_reliability_score: 0,
+      publisher_name: "",
+      publisher_introduction: "",
       recievedResponse: false
     };
 
@@ -25,9 +26,7 @@ class LoadingPage extends React.Component {
     getArticle(this.state.url).then(res => {
       this.setState({
         title: res.data.article_title,
-        articleText: res.data.article_content,
-        author: res.data.author_name,
-        publisher: res.data.publisher_name
+        articleText: res.data.article_content
       });
     });
 
@@ -37,6 +36,14 @@ class LoadingPage extends React.Component {
         author_name: res.data.author_name,
         author_introduction: res.data.author_introduction,
         author_reliability_score: res.data.author_reliability_score
+      });
+    });
+
+    // Obtain publisher information
+    getPublisher(this.state.url).then(res => {
+      this.setState({
+        publisher_name: res.data.publisher_name,
+        publisher_introduction: res.data.publisher_introduction
       });
     });
   }
@@ -65,12 +72,12 @@ class LoadingPage extends React.Component {
             state: {
               url: this.state.url,
               title: this.state.title,
-              author: this.state.author,
-              publisher: this.state.publisher,
               articleText: this.state.articleText,
               author_name: this.state.author_name,
               author_introduction: this.state.author_introduction,
-              author_reliability_score: this.state.author_reliability_score
+              author_reliability_score: this.state.author_reliability_score,
+              publisher_name: this.state.publisher_name,
+              publisher_introduction: this.state.publisher_introduction
             }
           }}
         />

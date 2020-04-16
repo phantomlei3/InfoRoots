@@ -16,9 +16,16 @@ export async function getArticle(url) {
   return res;
 }
 
-// Request for recieving author Information
+// Request for recieving author information
 export async function getAuthor(url) {
   console.log("Getting Author Information: " + url);
   let res = await axios.get("/getAuthorCard");
+  return res;
+}
+
+// Request for recieving publisher information
+export async function getPublisher(url) {
+  console.log("Getting Publisher Information: " + url);
+  let res = await axios.get("/getPublisherCard");
   return res;
 }
