@@ -25,14 +25,16 @@ class article:
         author_name, string
     '''
 
-    def __init__(self, url):
+    def __init__(self, url, check_citations="False"):
         '''
         :param url: the url of article link
+        :param check_citations, boolean that requires article to check citations
         '''
         self.url = url
         self.article_id = str(hashlib.md5(url.encode()).hexdigest())
         self.db = database()
         self.website_profiles = json.load(open("website_profiles/profiles.json"))
+        self.check_citations = check_citations
 
 
     def get(self):
@@ -71,18 +73,21 @@ class article:
         article_info = self.db.lookup_article(self.article_id)
         if article_info is None:
             # crawl article information
-            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile))
+            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile, self.check_citations))
             p.start()
             p.join()
             article_info = self.db.lookup_article(self.article_id)
 
-        article_dict["article_id"] = self.article_id
-        article_dict["profile"] = profile
-        article_dict["article_title"] = article_info[0]
-        article_dict["article_content"] = article_info[1]
-        article_dict["publisher_name"] = article_info[2]
-        article_dict["author_name"] = article_info[3]
-        article_dict["author_page_link"] = article_info[4]
+        try:
+            article_dict["article_id"] = self.article_id
+            article_dict["profile"] = profile
+            article_dict["article_title"] = article_info[0]
+            article_dict["article_content"] = article_info[1]
+            article_dict["publisher_name"] = article_info[2]
+            article_dict["author_name"] = article_info[3]
+            article_dict["author_page_link"] = article_info[4]
+        except:
+            return None
 
         # if the article is not in English, it will not have any credibility scores
         if detect(article_dict["article_title"]) == "en":
@@ -106,14 +111,14 @@ class article:
         return article_dict
 
 
-def thread_article_crawl(id, url, profile):
+def thread_article_crawl(id, url, profile, check_citations):
     '''
     A helper thread function for article crawl
     :param profile: a profile of publisher website that this article belongs to
     :param conn_string: a psycopg2 connection setup string
     '''
     process = CrawlerProcess(get_project_settings())
-    process.crawl('articles', id=id, url=url, profile=profile)
+    process.crawl('articles', id=id, url=url, profile=profile, check_citations=check_citations)
     process.start()
 
 
