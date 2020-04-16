@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import "./Homepage.css";
 import { Icon } from "@iconify/react";
 import magnifyingGlass from "@iconify/icons-oi/magnifying-glass";

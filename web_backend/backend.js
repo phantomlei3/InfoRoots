@@ -40,7 +40,7 @@ app.get("/searchArticle/:url", (request, response) => {
 
   requester.on("message", function(reply) {
     reply = reply.toString();
-    console.log("Received reply", ": [", reply, "]");
+    console.log("/searchArticle received reply", ": [", reply, "]");
     requester.close();
     setTimeout(function() {
       response.send(reply);

@@ -4,12 +4,12 @@ h1 {
   margin-top: 20px;
   margin-bottom: 40px;
   color: #616161;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 2.22px;
 }
 
 .loading {
-  margin-top: 10%;
+  margin-top: 16%;
 }
 
 .timer {
@@ -32,4 +32,11 @@ h1 {
   margin: 40px auto 0;
   text-align: center;
   font-size: 16px;
+}
+
+#loading-logo {
+  position: relative;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
 }

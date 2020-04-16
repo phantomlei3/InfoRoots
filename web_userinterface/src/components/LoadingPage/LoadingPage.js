@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Redirect } from "react-router-dom";
 import { getArticle, getAuthor, getPublisher } from "../../api.js";
 import "./LoadingPage.css";
+import InfoRootsLogo from "../../static/logo.png";
 
 class LoadingPage extends React.Component {
   constructor(props) {
@@ -18,6 +18,8 @@ class LoadingPage extends React.Component {
       author_reliability_score: 0,
       publisher_name: "",
       publisher_introduction: "",
+      article_paragraphs: [],
+      citation_links: [],
       recievedResponse: false
     };
 
@@ -26,7 +28,9 @@ class LoadingPage extends React.Component {
       this.setState({
         title: res.data.article_title,
         article_text: res.data.article_content,
-        article_reliability_score: res.data.article_reliability
+        article_reliability_score: res.data.article_reliability,
+        article_paragraphs: res.data.article_paragraphs,
+        citation_links: res.data.citation_links
       });
     });
 
@@ -74,6 +78,8 @@ class LoadingPage extends React.Component {
               title: this.state.title,
               article_text: this.state.article_text,
               article_reliability_score: this.state.article_reliability_score,
+              article_paragraphs: this.state.article_paragraphs,
+              citation_links: this.state.citation_links,
               author_name: this.state.author_name,
               author_introduction: this.state.author_introduction,
               author_reliability_score: this.state.author_reliability_score,
@@ -90,6 +96,9 @@ class LoadingPage extends React.Component {
     return (
       <div className="loading">
         {this.renderArticlePage()}
+        <div id="loading-logo">
+          <img src={InfoRootsLogo} id="logo" alt="InfoRoots Logo" />
+        </div>
         <h1>
           Your result is almost there…
           <br />
