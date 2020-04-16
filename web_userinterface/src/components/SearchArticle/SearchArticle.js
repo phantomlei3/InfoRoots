@@ -1,7 +1,10 @@
 import React from "react";
 import "./SearchArticle.css";
+import Rater from "react-rater";
+import "react-rater/lib/react-rater.css";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
+import PublisherCard from "../PublisherCard/PublisherCard.js";
 
 class SearchArticle extends React.Component {
   constructor(props) {
@@ -9,14 +12,17 @@ class SearchArticle extends React.Component {
     this.state = {
       url: decodeURIComponent(this.props.match.params.articleUrl),
       title: this.props.location.state.title,
-      author: this.props.location.state.author,
-      publisher: this.props.location.state.publisher,
-      articleText: this.props.location.state.articleText,
-      authorCardToggled: this.props.location.state.authorCardToggled,
+      article_text: this.props.location.state.article_text,
+      article_reliability_score: this.props.location.state
+        .article_reliability_score,
       author_name: this.props.location.state.author_name,
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
-        .author_reliability_score
+        .author_reliability_score,
+      publisher_name: this.props.location.state.publisher_name,
+      publisher_introduction: this.props.location.state.publisher_introduction,
+      authorCardToggled: false,
+      publisherCardToggled: false
     };
   }
 
@@ -29,17 +35,35 @@ class SearchArticle extends React.Component {
     }
   };
 
+  // Function to handle toggling the Publisher Card
+  togglePublisherCard = () => {
+    if (this.state.publisherCardToggled === false) {
+      this.setState({ publisherCardToggled: true });
+    } else {
+      this.setState({ publisherCardToggled: false });
+    }
+  };
+
   render() {
     return (
       <div className="page-container">
         <NavBar />
         <div className="intro-container">
           <div id="text-container">
-            <div id="title-container">{this.state.title}</div>
+            <div id="title-container">
+              {this.state.title}
+              <div id="stars">
+                <Rater
+                  total={5}
+                  interactive={false}
+                  rating={this.state.article_reliability_score * 5}
+                />
+              </div>
+            </div>
             <div id="author-container">
               Author:
               <div id="author-text" onClick={this.toggleAuthorCard}>
-                {this.state.author}
+                {this.state.author_name}
               </div>
               {this.state.authorCardToggled && (
                 <AuthorCard
@@ -51,13 +75,24 @@ class SearchArticle extends React.Component {
               )}
             </div>
             <div id="publisher-container">
-              Publisher: <span>{this.state.publisher}</span>
+              Publisher:
+              <div id="publisher-text" onClick={this.togglePublisherCard}>
+                {this.state.publisher_name}
+              </div>
+              {this.state.publisherCardToggled && (
+                <PublisherCard
+                  publisher_name={this.state.publisher_name}
+                  publisher_introduction={this.state.publisher_introduction}
+                  credibility={0.7}
+                  publisherLink="http://google.com"
+                />
+              )}
             </div>
           </div>
         </div>
         <div className="bottom-container">
           <div id="article-container">
-            <div id="article-text-container">"{this.state.articleText}</div>
+            <div id="article-text-container">"{this.state.article_text}</div>
           </div>
         </div>
       </div>

@@ -6,7 +6,13 @@ import magnifyingGlass from "@iconify/icons-oi/magnifying-glass";
 import InfoRootsLogo from "../../static/logo.png";
 import MenuImage from "../../static/menu.svg";
 import Menu from "../Menu/Menu.js";
-import { processUserSearch } from "../../api.js";
+import {
+  processUserSearch,
+  handleSearch,
+  renderArticlePage,
+  setSearchQuery,
+  enterPressed
+} from "../../api.js";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -19,43 +25,11 @@ class NavBar extends React.Component {
     };
   }
 
-  // Function to handle searching of a URL on the homepage
-  handleSearch = () => {
-    if (this.state.searchQuery.length === 0) {
-      return;
-    }
-
-    processUserSearch(this.state.searchQuery).then(res => {
-      if (res.data === "Okey") {
-        this.setState({ articleSearched: true });
-      }
-    });
-  };
-
-  // Render article page
-  renderArticlePage = () => {
-    if (this.state.articleSearched) {
-      return (
-        <Redirect
-          to={"/article/" + encodeURIComponent(this.state.searchQuery)}
-        />
-      );
-    }
-  };
-
-  setSearchQuery = event => {
-    this.setState({
-      searchQuery: event.target.value
-    });
-  };
-
-  // Handle when the user presses enter to search
-  enterPressed = event => {
-    var code = event.which;
-    if (code === 13) {
-      this.handleSearch();
-    }
-  };
+  processUserSearch = processUserSearch.bind(this);
+  handleSearch = handleSearch.bind(this);
+  renderArticlePage = renderArticlePage.bind(this);
+  setSearchQuery = setSearchQuery.bind(this);
+  enterPressed = enterPressed.bind(this);
 
   // Function to handle toggling the menu
   toggleMenu = () => {
