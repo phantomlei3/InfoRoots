@@ -11,9 +11,8 @@ class LoadingPage extends React.Component {
     this.state = {
       url: props.location.state.url,
       title: "",
-      author: "",
-      publisher: "",
-      articleText: "",
+      article_text: "",
+      article_reliability_score: "",
       author_name: "",
       author_introduction: "",
       author_reliability_score: 0,
@@ -26,7 +25,8 @@ class LoadingPage extends React.Component {
     getArticle(this.state.url).then(res => {
       this.setState({
         title: res.data.article_title,
-        articleText: res.data.article_content
+        article_text: res.data.article_content,
+        article_reliability_score: res.data.article_reliability
       });
     });
 
@@ -72,7 +72,8 @@ class LoadingPage extends React.Component {
             state: {
               url: this.state.url,
               title: this.state.title,
-              articleText: this.state.articleText,
+              article_text: this.state.article_text,
+              article_reliability_score: this.state.article_reliability_score,
               author_name: this.state.author_name,
               author_introduction: this.state.author_introduction,
               author_reliability_score: this.state.author_reliability_score,
