@@ -1,5 +1,4 @@
 import scrapy
-import unidecode
 import re
 import psycopg2
 import psycopg2.extras
