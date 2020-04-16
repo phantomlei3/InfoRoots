@@ -89,6 +89,8 @@ class infoMediator:
             publisher_card = self.get_publisher_card()
             self.socket.send_string(publisher_card)
 
+            return 
+
 
         '''
         @ send "Error" if command is not recognized 
