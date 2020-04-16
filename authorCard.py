@@ -91,6 +91,7 @@ class authorCard:
         :return:
         '''
 
+        print(score_list)
         avg_score = 0
         score_length = 0
         for score in score_list:
@@ -101,7 +102,7 @@ class authorCard:
         if score_length != 0:
             return avg_score / score_length
         else:
-            return -1
+            return -5
 
 
 
@@ -120,10 +121,17 @@ class authorCard:
             # get article credibility to process
             each_article = article(article_link)
             article_result = each_article.get()
+            print(article_link)
+
             if article_result is None:
                 continue
-            accumlated_reliability.append(article_result["article_reliability"])
-            accumlated_bias.append(article_result["article_bias"])
+
+            if article_result["article_reliability"] >= 0:
+                accumlated_reliability.append(article_result["article_reliability"])
+                accumlated_bias.append(article_result["article_bias"])
+
+            if len(accumlated_reliability) >= 3:
+                break
 
         if len(accumlated_reliability) != 0:
 
@@ -131,8 +139,8 @@ class authorCard:
             avg_bias = self.sum_list_scores(accumlated_bias)
         else:
             # -1 represents Not available reliability/bias
-            avg_reliability = -1
-            avg_bias = -1
+            avg_reliability = -100
+            avg_bias = -100
         self.db.insert_author_credibility(self.author_id, avg_reliability, avg_bias)
 
 

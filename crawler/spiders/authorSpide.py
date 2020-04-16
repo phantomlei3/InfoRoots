@@ -61,10 +61,10 @@ class authorSpide(scrapy.Spider):
                     new_author_article_list.append(article_link)
 
         # convert python string list to PostgreSQl text array
-        postgreSQL_article_array = self.article_list_to_postgreSQL(author_article_list)
+        # postgreSQL_article_array = self.article_list_to_postgreSQL(author_article_list)
 
         # store information in PostgreSQL authors Table
-        self.database.insert_author(self.id, self.author_name, author_introduction, author_article_list)
+        self.database.insert_author(self.id, self.author_name, author_introduction, new_author_article_list)
 
 
 
@@ -91,7 +91,8 @@ class authorSpide(scrapy.Spider):
         :param article_link: one article URL that require to add domain
         :return: one article URL that have domain
         '''
-        return self.profile['domain']+URL
+        test_domain = self.profile['domain'].replace("www.", "")
+        return "https://"+self.profile['domain']+URL
 
     def article_list_to_postgreSQL(self, article_lists):
         '''

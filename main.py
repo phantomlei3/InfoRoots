@@ -8,6 +8,9 @@ import hashlib
 
 if __name__ == '__main__':
 
+
+    #test_profile_author()
+
     server = infoMediator()
 
     server.start()
