@@ -88,3 +88,23 @@ app.get("/getAuthorCard", (request, response) => {
     }, 1000);
   });
 });
+
+// GET method to recieve publisher card information for an article
+app.get("/getPublisherCard", (request, response) => {
+  console.log("User requested publisher information");
+
+  res = "None";
+  var requester = zmq.socket("req");
+  requester.connect("tcp://64.225.60.170:5555");
+  requester.send("Publisher card");
+
+  requester.on("message", function(res) {
+    res = res.toString();
+    console.log("getPublisherCard success");
+    requester.close();
+
+    setTimeout(function() {
+      response.send(res);
+    }, 1000);
+  });
+});
