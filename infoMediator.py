@@ -2,6 +2,7 @@ import zmq
 import json
 from article import article
 from authorCard import authorCard
+from publisherCard import publisherCard
 
 class infoMediator:
     '''
@@ -24,6 +25,7 @@ class infoMediator:
         # Information variables
         self.article_content = None
         self.author_card = None
+        self.publisher_card = None
 
     def start(self):
         '''
@@ -62,7 +64,7 @@ class infoMediator:
         '''
         request for getting article content
         @ wait for command: "Article"
-        @ send JSON String"{article_title, article_content, author_name, publisher_name}" 
+        @ send JSON String"{article_title, article_content, author_name, publisher_name, article_reliability}" 
         @ send "None"  if there is no URL processed first.
         '''
         if command == "Article" and self.URL_status:
@@ -82,6 +84,10 @@ class infoMediator:
             self.socket.send_string(author_card)
 
             return
+
+        if command == "Publisher card" and self.URL_status:
+            publisher_card = self.get_publisher_card()
+            self.socket.send_string(publisher_card)
 
 
         '''
@@ -112,6 +118,8 @@ class infoMediator:
             self.article_content["article_content"] = article_result["article_content"]
             self.article_content["author_name"] = article_result["author_name"]
             self.article_content["publisher_name"] = article_result["publisher_name"]
+            self.article_content["article_reliability"] = article_result["article_reliability"]
+            self.article_content["article_bias"] = article_result["article_bias"]
 
             # set up author card class
             new_author_card = authorCard(article_id=article_result["article_id"],
@@ -129,6 +137,19 @@ class infoMediator:
                 self.author_card["author_bias_score"] = author_result["author_bias"]
             else:
                 self.author_card = None
+
+            #set up publisher card class
+            new_publisher_card = publisherCard(article_result["profile"])
+
+            publisher_result = new_publisher_card.get()
+
+            # store publisher information to self.publisher_card
+            if publisher_result is not None:
+                self.publisher_card = dict()
+                self.publisher_card["publisher_name"] = publisher_result["publisher_name"]
+                self.publisher_card["publisher_introduction"] = publisher_result["publisher_intro"]
+
+
         else:
             self.article_content = dict()
             self.URL_status = False
@@ -156,3 +177,15 @@ class infoMediator:
         else:
             return "None"
 
+
+    def get_publisher_card(self):
+        '''
+
+        :return: a json string of self.publisher_card if crawling and analysis are succesful
+                    Otherwise return None
+        '''
+
+        if self.publisher_card is not None:
+            return json.dumps(self.publisher_card)
+        else:
+            return "None"
