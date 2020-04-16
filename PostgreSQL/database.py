@@ -177,3 +177,33 @@ class database:
         else:
             return None
 
+    def insert_citation(self, article_id, article_paragraphs, citations_links):
+        '''
+
+        insert one new publisher into publisher table
+
+        '''
+        insert_command = "INSERT INTO citations(article_id, article_paragraphs, citation_links) " \
+                         "VALUES (%s, %s, %s)"
+
+        self.cursor.execute(insert_command, [article_id, article_paragraphs, citations_links])
+        self.conn.commit()
+
+    def lookup_citation(self, article_id):
+        '''
+
+        :param article_id, a string that is the primary key in citations table (md5 value)
+        :return:
+            if article_id exists in citations table:
+            return a tuple (article_paragraphs, citation_links)
+            if not existed:
+            return None
+        '''
+        select_command = "SELECT article_paragraphs, citation_links FROM citations WHERE article_id = %s"
+        self.cursor.execute(select_command, [article_id])
+        result = self.cursor.fetchall()
+        if len(result) == 1:
+            return result[0]
+        else:
+            return None
+

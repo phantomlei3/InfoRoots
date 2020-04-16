@@ -3,6 +3,7 @@ import json
 from article import article
 from authorCard import authorCard
 from publisherCard import publisherCard
+from citationsNetwork import citationsNetwork
 
 class infoMediator:
     '''
@@ -26,6 +27,7 @@ class infoMediator:
         self.article_content = None
         self.author_card = None
         self.publisher_card = None
+        self.citation_network = None
 
     def start(self):
         '''
@@ -89,7 +91,13 @@ class infoMediator:
             publisher_card = self.get_publisher_card()
             self.socket.send_string(publisher_card)
 
-            return 
+            return
+
+        if command == "Citation network" and self.URL_status:
+            citation_network = self.get_citation_network()
+            self.socket.send_string(citation_network)
+
+            return
 
 
         '''
@@ -110,7 +118,7 @@ class infoMediator:
         '''
 
         # set up article class
-        new_article = article(self.URL)
+        new_article = article(self.URL, check_citations="True")
         article_result = new_article.get()
         if article_result is not None:
             self.URL_status = True
@@ -140,6 +148,7 @@ class infoMediator:
             else:
                 self.author_card = None
 
+
             #set up publisher card class
             new_publisher_card = publisherCard(article_result["profile"])
 
@@ -150,6 +159,21 @@ class infoMediator:
                 self.publisher_card = dict()
                 self.publisher_card["publisher_name"] = publisher_result["publisher_name"]
                 self.publisher_card["publisher_introduction"] = publisher_result["publisher_intro"]
+
+            # set up citation network class
+            new_citation_network = citationsNetwork(article_result["article_id"])
+            citation_network_result = new_citation_network.get()
+
+            if citation_network_result is not None:
+                # store partial information in article_content
+                self.article_content["article_paragraphs"] = citation_network_result["article_paragraphs"]
+                self.article_content["citation_links"] = citation_network_result["citation_links"]
+
+                # store specific citation info to self.citation_network
+                self.citation_network = citation_network_result["citation_info"]
+            else:
+                self.citation_network = None
+
 
 
         else:
@@ -171,7 +195,7 @@ class infoMediator:
     def get_author_card(self):
         '''
 
-        :return: a json string of self.author_card if crawling and analysis are succesful
+        :return: a json string of self.author_card if crawling and analysis are succesfull
                     Otherwise return None
         '''
         if self.author_card is not None:
@@ -183,11 +207,23 @@ class infoMediator:
     def get_publisher_card(self):
         '''
 
-        :return: a json string of self.publisher_card if crawling and analysis are succesful
+        :return: a json string of self.publisher_card if crawling and analysis are succesfull
                     Otherwise return None
         '''
 
         if self.publisher_card is not None:
             return json.dumps(self.publisher_card)
+        else:
+            return "None"
+
+    def get_citation_network(self):
+        '''
+
+        :return: a json string of self.citation_network if crawling and analysis are succesfull
+                    Otherwise return None
+        '''
+
+        if self.citation_network is not None:
+            return json.dumps(self.citation_network)
         else:
             return "None"

@@ -44,3 +44,11 @@ CREATE TABLE publishers (
     publisher_intro TEXT,
     publisher_reliability_score FLOAT
 );
+
+DROP TABLE IF EXISTS citations;
+
+CREATE TABLE citations (
+    article_id VARCHAR(255) PRIMARY KEY,
+    article_paragraphs TEXT[],
+    citation_links TEXT[]
+);

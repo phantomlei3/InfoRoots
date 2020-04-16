@@ -18,6 +18,7 @@ class articleSpide(scrapy.Spider):
         self.url = kw.get('url')  # one URL from user input
         self.database = database()
         self.profile = kw.get('profile') # profile of crawler for this website
+        self.check_citations = kw.get('check_citations')
 
 
     def start_requests(self):
@@ -43,7 +44,9 @@ class articleSpide(scrapy.Spider):
 
         # article title and content
         article_title = response.css(self.profile["article_title"]+"::text").get().strip()  # tested
-        article_content = self.get_clean_article_contents(response.css(self.profile["article_content"]).extract()) #tested
+        raw_article_content = response.css(self.profile["article_content"]).extract()
+        clean_paragraphs = self.get_clean_article_contents(raw_article_content)
+        article_content = "'\n\n".join(clean_paragraphs) #tested
 
         # publisher information
         publisher_name = self.profile["name"] # tested
@@ -56,6 +59,12 @@ class articleSpide(scrapy.Spider):
         self.database.insert_article(self.id, article_title, article_content,
                                              publisher_name, author_name, author_page_link)
 
+        # if citations is required to check, store citation information
+        if self.check_citations == "True":
+            citations = self.get_citations(raw_article_content)
+            self.database.insert_citation(self.id, clean_paragraphs, citations)
+
+
 
     def get_clean_article_contents(self, article_content_html):
         '''
@@ -65,9 +74,45 @@ class articleSpide(scrapy.Spider):
         :param article_content_html: HTML response of article contents
         :return: pure article content without any html tags
         '''
-        article_content = ""
+        article_paragraphs = list()
+
         for paragraph in article_content_html:
             clean_paraggraph = re.sub(r'<.*?>', '', paragraph).strip()
             if clean_paraggraph != "":
-                article_content += clean_paraggraph + "\n\n"
-        return article_content.strip()
+                article_paragraphs.append(clean_paraggraph)
+
+
+        return article_paragraphs
+
+
+
+
+    def get_citations(self, paragraphs):
+        '''
+        extract all citations in article content
+        :param paragraphs, a list of paragraph string from article content
+            eg. ["None", "www.baidu.com", "None", ...]
+            each one corresponds to each paragraph
+        :return:
+        '''
+
+        # create tags for regex and get the cited words
+        citation_tag = re.compile(r'<a.*?href=\"(.*?)\".*?>.*?</a>')
+
+        # create citations list to store all citations link for each paragraph
+        citations = list()
+
+
+        for paragraph in paragraphs:
+            potential_citations = re.findall(citation_tag, paragraph)
+            # no citations in this paragraph
+            if len(potential_citations) == 0:
+                citations.append("None")
+            else:
+                # use the first citation for the whole paragraph for convenience
+                # TODO: advance multiple citations in one paragraph
+                citations.append(potential_citations[0])
+
+        return citations
+
+
