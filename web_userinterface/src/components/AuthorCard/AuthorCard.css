@@ -20,7 +20,7 @@
 
 #author {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 24px;
 }
 
@@ -33,9 +33,9 @@
 
 #author-profile-link {
   display: inline-block;
-  width: 180px;
+  width: 170px;
   font-size: 14px;
-  margin-left: 6%;
+  margin-left: 3%;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
@@ -46,7 +46,7 @@
 
 #description {
   font-size: 16px;
-  height: 128px;
+  height: 118px;
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */

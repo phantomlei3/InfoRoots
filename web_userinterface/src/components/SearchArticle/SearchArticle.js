@@ -51,7 +51,6 @@ class SearchArticle extends React.Component {
   renderArticleText = () => {
     var elements = [];
     for (let i = 0; i < this.state.article_paragraphs.length; i++) {
-      console.log(this.state.article_paragraphs[i]);
       elements.push(
         <Citation
           key={i}

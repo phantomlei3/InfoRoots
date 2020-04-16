@@ -3,6 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Redirect } from "react-router-dom";
 import { getArticle, getAuthor, getPublisher } from "../../api.js";
 import "./LoadingPage.css";
+import InfoRootsLogo from "../../static/logo.png";
 
 class LoadingPage extends React.Component {
   constructor(props) {
@@ -95,6 +96,9 @@ class LoadingPage extends React.Component {
     return (
       <div className="loading">
         {this.renderArticlePage()}
+        <div id="loading-logo">
+          <img src={InfoRootsLogo} id="logo" alt="InfoRoots Logo" />
+        </div>
         <h1>
           Your result is almost there…
           <br />
