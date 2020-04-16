@@ -7,7 +7,8 @@
         "author_name": "span.header-authors-name",
         "author_page_link": "a.header-authors-url",
         "author_intro": "div.auth_main div.about_auth p",
-        "author_article_list": "div.article_list div.article_list_item h2.headline a"
+        "author_article_list": "div.article_list div.article_list_item h2.headline a",
+        "NewsGuard": "https://api.newsguardtech.com/CF31531E1151AD4E1FA9714C366A92C1229B292CD7248FFE7F7A97B1998E718781ADFD74BF76B3778277096FEDFAE2315E8B86D5A55E1B19?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
     },
 
     "www.latimes.com": {
@@ -18,7 +19,8 @@
         "author_name": "div.ArticlePage-authorName a span",
         "author_page_link": "div.ArticlePage-authors div.ArticlePage-authorName a",
         "author_intro": "div.AuthorPage-fullBiography div.AuthorPage-fullBiography-content p",
-        "author_article_list": "div.PromoSmall-content  div.PromoSmall-titleContainer  div.PromoSmall-title a"
+        "author_article_list": "div.PromoSmall-content  div.PromoSmall-titleContainer  div.PromoSmall-title a",
+        "NewsGuard": "https://api.newsguardtech.com/8AD136F2F2318F478C42DD8DE30630EF6B1A167A3B560DA42F12F3F12A296373EF311BE467C26E5208696C886A9DB5EAEA61226954A00DB5?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
     },
 
     "www.nytimes.com": {
@@ -27,8 +29,9 @@
         "article_title": "span.css-fwqvlz",
         "article_content": "section.meteredContent div.css-1fanzo5 div.css-53u6y8 p",
         "author_name": "span.last-byline",
-        "author_page_link": "div.css-1baulvz p.css-1fv7b6t a.css-brehiz",
+        "author_page_link": "a.css-brehiz",
         "author_intro": "h2.css-n6o8m2 span p",
-        "author_article_list": "div.css-1cp3ece div.css-1l4spti a"
+        "author_article_list": "div.css-1cp3ece div.css-1l4spti a",
+        "NewsGuard:": "https://api.newsguardtech.com/A11D87696D98A119EC6CD6A4318E5C237CC6C6A80FF77AE348D11D13A6F977DEBCF52F0E1967843733E0CCFD364CC04AE16C4A1658566FBD?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
     }
 }

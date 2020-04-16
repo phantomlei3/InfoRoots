@@ -34,3 +34,13 @@ CREATE TABLE authors_credibility (
     author_reliability_score FLOAT,
     author_bias_score FLOAT
 );
+
+
+DROP TABLE IF EXISTS publishers;
+
+CREATE TABLE publishers (
+    publisher_id VARCHAR(255) PRIMARY KEY,
+    publisher_name VARCHAR(255),
+    publisher_intro TEXT,
+    publisher_reliability_score FLOAT
+);

@@ -1,6 +1,4 @@
 
-import psycopg2
-import psycopg2.extras
 import hashlib
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
@@ -126,9 +124,6 @@ class authorCard:
                 continue
             accumlated_reliability.append(article_result["article_reliability"])
             accumlated_bias.append(article_result["article_bias"])
-
-            print(accumlated_reliability)
-            print(accumlated_bias)
 
         if len(accumlated_reliability) != 0:
 

@@ -9,6 +9,3 @@ def test_profile_author():
                              article_result["profile"], article_result["author_name"])
     print(test_author.get())
 
-
-def test_non_profile_author():
-    pass

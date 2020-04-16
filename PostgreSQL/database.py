@@ -11,7 +11,7 @@ class database:
 
 
     def __init__(self):
-        self.conn = psycopg2.connect("host='127.0.0.1' port='5432' dbname='inforoots' user='lei' password='971203'")
+        self.conn = psycopg2.connect("host='64.225.60.170' port='5432' dbname='inforoots' user='lei' password='971203'")
         self.cursor = self.conn.cursor()
 
 
@@ -145,4 +145,35 @@ class database:
         else:
             return None
 
+
+    def insert_publisher(self, publisher_id, publisher_name, publisher_introduction, publisher_credibility_score):
+        '''
+
+        insert one new publisher into publisher table
+
+        '''
+
+        insert_command = "INSERT INTO publishers(publisher_id, publisher_name, publisher_intro, publisher_reliability_score) " \
+                         "VALUES (%s, %s, %s, %s)"
+
+        self.cursor.execute(insert_command, [publisher_id, publisher_introduction, publisher_credibility_score])
+        self.conn.commit()
+
+    def lookup_publisher(self, publisher_id):
+        '''
+
+        :param publisher_id, a string that is the primary key in publisher table (md5 value)
+        :return:
+            if publisher_id exists in publisher table:
+            return a tuple (publisher_intro, publisher_reliability_score)
+            if not existed:
+            return None
+        '''
+        select_command = "SELECT publisher_intro, publisher_reliability_score FROM publishers WHERE publisher_id = %s"
+        self.cursor.execute(select_command, [publisher_id])
+        result = self.cursor.fetchall()
+        if len(result) == 1:
+            return result[0]
+        else:
+            return None
 
