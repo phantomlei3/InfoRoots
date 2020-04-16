@@ -5,6 +5,7 @@ import "react-rater/lib/react-rater.css";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
 import PublisherCard from "../PublisherCard/PublisherCard.js";
+import Citation from "../Citation/Citation.js";
 
 class SearchArticle extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class SearchArticle extends React.Component {
       article_text: this.props.location.state.article_text,
       article_reliability_score: this.props.location.state
         .article_reliability_score,
+      article_paragraphs: this.props.location.state.article_paragraphs,
+      citation_links: this.props.location.state.citation_links,
       author_name: this.props.location.state.author_name,
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
@@ -44,7 +47,27 @@ class SearchArticle extends React.Component {
     }
   };
 
+  // Function to handle citations in the article text
+  renderArticleText = () => {
+    var elements = [];
+    for (let i = 0; i < this.state.article_paragraphs.length; i++) {
+      console.log(this.state.article_paragraphs[i]);
+      elements.push(
+        <Citation
+          key={i}
+          link={this.state.citation_links[i]}
+          paragraph={this.state.article_paragraphs[i].substr(
+            0,
+            this.state.article_paragraphs[i].length
+          )}
+        />
+      );
+    }
+    return elements;
+  };
+
   render() {
+    var articleText = this.renderArticleText();
     return (
       <div className="page-container">
         <NavBar />
@@ -92,7 +115,7 @@ class SearchArticle extends React.Component {
         </div>
         <div className="bottom-container">
           <div id="article-container">
-            <div id="article-text-container">"{this.state.article_text}</div>
+            <div id="article-text-container">{articleText}</div>
           </div>
         </div>
       </div>
