@@ -2,6 +2,7 @@ import React from "react";
 import "./SearchArticle.css";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import NavBar from "../NavBar/NavBar.js";
 import AuthorCard from "../AuthorCard/AuthorCard.js";
 import PublisherCard from "../PublisherCard/PublisherCard.js";
@@ -115,8 +116,11 @@ class SearchArticle extends React.Component {
         <div className="bottom-container">
           <div id="article-container">
             <div id="article-text-container">{articleText}</div>
+            <div id="border"></div>
           </div>
         </div>
+        <div id="bottom-header">InfoRoots, Spring 2020 {"\u00A9"}</div>
+        <ScrollUpButton />
       </div>
     );
   }
