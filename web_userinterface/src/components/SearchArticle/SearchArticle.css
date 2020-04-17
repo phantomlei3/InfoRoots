@@ -84,7 +84,7 @@ span {
 
 #border {
   border-left: solid;
-  border-right: solid;
+  border-width: 5px;
   border-color: #b0b0b0;
   height: 100%;
   position: absolute;
@@ -136,4 +136,12 @@ span {
   vertical-align: middle;
   border-top: solid;
   border-color: #e0e0e0;
+}
+
+.ScrollUpButton__Container-ScrollUpButton__Toggled {
+  outline: none;
+}
+
+.ScrollUpButton__Container {
+  outline: none;
 }

@@ -52,6 +52,7 @@ class SearchArticle extends React.Component {
   renderArticleText = () => {
     var elements = [];
     for (let i = 0; i < this.state.article_paragraphs.length; i++) {
+      console.log(this.state.article_paragraphs[i]);
       elements.push(
         <Citation
           key={i}
@@ -62,12 +63,18 @@ class SearchArticle extends React.Component {
           )}
         />
       );
+      if (i < this.state.article_paragraphs.length - 1) {
+        elements.push(<p></p>);
+        elements.push(<p></p>);
+        elements.push(<br></br>);
+      }
     }
+
     return elements;
   };
 
   render() {
-    var articleText = this.renderArticleText();
+    let articleText = this.renderArticleText();
     return (
       <div className="page-container">
         <NavBar />
