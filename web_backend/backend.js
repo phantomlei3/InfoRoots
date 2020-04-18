@@ -108,3 +108,22 @@ app.get("/getPublisherCard", (request, response) => {
     }, 1000);
   });
 });
+
+// GET method to recieve citation information for an article
+app.get("/getCitationInformation", (request, response) => {
+  console.log("User requested citation information");
+  res = "None";
+  var requester = zmq.socket("req");
+  requester.connect("tcp://64.225.60.170:5555");
+  requester.send("Citation network");
+
+  requester.on("message", function(res) {
+    res = res.toString();
+    console.log("getCitationInformation success");
+    requester.close();
+
+    setTimeout(function() {
+      response.send(res);
+    }, 1000);
+  });
+});

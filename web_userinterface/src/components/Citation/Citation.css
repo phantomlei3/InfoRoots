@@ -2,6 +2,10 @@
   background-color: #b0b0b0;
   text-decoration: none !important;
 }
+#citation:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
 
 a {
   color: black;
@@ -10,3 +14,26 @@ a {
 #no-citation {
   background-color: #e0e0e0;
 }
+
+/* #arrow-container {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 700px;
+}
+
+#arrow-left {
+  position: relative;
+  top: 40px;
+}
+
+#arrow-left:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  border-top: 5px solid #b0b0b0;
+  border-left: 5px solid #b0b0b0;
+  z-index: 100;
+  transform: rotateZ(-45deg);
+} */

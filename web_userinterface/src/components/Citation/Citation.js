@@ -1,16 +1,49 @@
 import React from "react";
 import "./Citation.css";
 
-function Citation(props) {
+class Citation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrowDisplayed: false
+    };
+  }
+  // Function to handle setting the link in the parent component
+  setLink = () => {
+    this.props.setCitationLink(this.props.link);
+  };
+
+  componentWillReceiveProps(newProps) {
+    if (
+      newProps.currArrowLink === newProps.link &&
+      newProps.currArrowLink !== "None"
+    ) {
+      this.setState({
+        arrowDisplayed: true
+      });
+    } else {
+      this.setState({
+        arrowDisplayed: false
+      });
+    }
+  }
+
   // No link
-  if (props.link === "None") {
-    return <div id="no-citation">{props.paragraph}</div>;
-  } else {
+  render() {
     return (
-      <div id="citation">
-        <a id="link" href={props.link} target="_blank">
-          {props.paragraph}
-        </a>
+      <div>
+        {this.state.arrowDisplayed && (
+          <div id="arrow-container">
+            <div id="arrow-left"></div>
+          </div>
+        )}
+        {this.props.link === "None" ? (
+          <div id="no-citation">{this.props.paragraph}</div>
+        ) : (
+          <div id="citation" onClick={this.setLink}>
+            {this.props.paragraph}
+          </div>
+        )}
       </div>
     );
   }
