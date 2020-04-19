@@ -63,7 +63,10 @@ class article:
         article_dict = dict()
 
         # get article website profile
-        url_domain = self.url.split("/")[2].strip()
+        try:
+            url_domain = self.url.split("/")[2].strip()
+        except:
+            return None
         if self.url.split("/")[2].strip() in self.website_profiles:
             profile = self.website_profiles[url_domain]
         else:
