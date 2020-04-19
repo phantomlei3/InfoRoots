@@ -19,6 +19,7 @@ class SearchArticle extends React.Component {
         .article_reliability_score,
       article_paragraphs: this.props.location.state.article_paragraphs,
       citation_links: this.props.location.state.citation_links,
+      citation_information: this.props.location.state.citation_information,
       author_name: this.props.location.state.author_name,
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
