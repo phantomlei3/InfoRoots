@@ -54,7 +54,7 @@ class publisherCard:
         publisher_dict["publisher_name"] = self.publisher_name
         publisher_dict["publisher_intro"] = publisher_info[0]
         publisher_dict["publisher_reliability_score"] = publisher_info[1]
-        publisher_dict["publisher_link"] = self.profile["domain"]
+        publisher_dict["publisher_link"] = "https://"+self.profile["domain"]
 
         return publisher_dict
 
