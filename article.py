@@ -113,7 +113,7 @@ class article:
         return article_dict
 
 
-def thread_article_crawl(id, url, profile, check_citations):
+def thread_article_crawl(id, url, profile):
     '''
     A helper thread function for article crawl
     :param profile: a profile of publisher website that this article belongs to
