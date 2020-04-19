@@ -87,6 +87,11 @@ class infoMediator:
 
             return
 
+        '''
+         request for getting publisher's cards
+        @ wait for command: "Publisher card"
+        @ send JSON String "{publisher_name, publisher_introduction, publisher_reliability_score}"
+        '''
         if command == "Publisher card" and self.URL_status:
             publisher_card = self.get_publisher_card()
             self.socket.send_string(publisher_card)
@@ -159,6 +164,7 @@ class infoMediator:
                 self.publisher_card = dict()
                 self.publisher_card["publisher_name"] = publisher_result["publisher_name"]
                 self.publisher_card["publisher_introduction"] = publisher_result["publisher_intro"]
+                self.publisher_card["publisher_reliability_score"] = publisher_result["publisher_reliability_score"]
 
             # set up citation network class
             new_citation_network = citationsNetwork(article_result["article_id"])
