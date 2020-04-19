@@ -53,7 +53,8 @@ class LoadingPage extends React.Component {
     getPublisher(this.state.url).then(res => {
       this.setState({
         publisher_name: res.data.publisher_name,
-        publisher_introduction: res.data.publisher_introduction
+        publisher_introduction: res.data.publisher_introduction,
+        publisher_reliability_score: res.data.publisher_reliability_score
       });
     });
 
@@ -98,7 +99,9 @@ class LoadingPage extends React.Component {
               author_introduction: this.state.author_introduction,
               author_reliability_score: this.state.author_reliability_score,
               publisher_name: this.state.publisher_name,
-              publisher_introduction: this.state.publisher_introduction
+              publisher_introduction: this.state.publisher_introduction,
+              publisher_reliability_score: this.state
+                .publisher_reliability_score
             }
           }}
         />
