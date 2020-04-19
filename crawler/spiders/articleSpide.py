@@ -93,7 +93,7 @@ class articleSpide(scrapy.Spider):
         :return: one author URL that have domain
         '''
         test_domain = self.profile['domain'].replace("www.", "")
-        return "https://"+self.profile['domain']+"/"+URL.strip("/")
+        return "https://"+self.profile['domain']+"/"+URL.lstrip("/")
 
     def get_citations(self, paragraphs):
         '''

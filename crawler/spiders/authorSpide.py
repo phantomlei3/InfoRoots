@@ -49,7 +49,7 @@ class authorSpide(scrapy.Spider):
             author_introduction = self.get_clean_author_introduction(author_introduction)
 
         # extract recent article link from this author
-        author_article_list = response.css(self.profile["author_article_list"]+"::attr(href)").extract() # tested
+        author_article_list = response.css(self.profile["author_article_list"]).extract() # tested
 
         # if URLs in article list does not have domain name, add domain name
         new_author_article_list = list()
