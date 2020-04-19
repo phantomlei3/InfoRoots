@@ -26,6 +26,8 @@ class SearchArticle extends React.Component {
         .author_reliability_score,
       publisher_name: this.props.location.state.publisher_name,
       publisher_introduction: this.props.location.state.publisher_introduction,
+      publisher_reliability_score: this.props.location.state
+        .publisher_reliability_score,
       authorCardToggled: false,
       publisherCardToggled: false,
       citationDisplayed: false,
@@ -181,6 +183,9 @@ class SearchArticle extends React.Component {
                 <PublisherCard
                   publisher_name={this.state.publisher_name}
                   publisher_introduction={this.state.publisher_introduction}
+                  publisher_reliability_score={
+                    this.state.publisher_reliability_score
+                  }
                   credibility={0.7}
                   publisherLink="http://google.com"
                 />
