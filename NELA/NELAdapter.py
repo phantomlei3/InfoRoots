@@ -15,9 +15,9 @@ class NELAdapter:
 
     def __init__(self, article_title, article_content):
         # decode title and content
-        decoded_article_title = article_title.encode("gbk", 'ignore').decode("gbk", "ignore")
-        decoded_article_content = article_content.encode("gbk", 'ignore').decode("gbk", "ignore")
-        self.NELA = parse_text(decoded_article_title, decoded_article_content)
+        # decoded_article_title = article_title.encode("gbk", 'ignore').decode("gbk", "ignore")
+        # decoded_article_content = article_content.encode("gbk", 'ignore').decode("gbk", "ignore")
+        self.NELA = parse_text(article_title, article_content)
 
 
     def scale_factor(self, value):
@@ -33,7 +33,9 @@ class NELAdapter:
         '''
         for item in self.NELA:
             if item["name"] == "fake_filter":
-                return self.scale_factor(item["result"][1][1])
+                for score_name, score in item["result"]:
+                    if score_name == 'Reliable Writing Style':
+                        return score
 
     def get_bias_score(self):
         '''
@@ -42,5 +44,7 @@ class NELAdapter:
         '''
         for item in self.NELA:
             if item["name"] == "bias_filter":
-                return self.scale_factor(item["result"][0][1])
+                for score_name, score in item["result"]:
+                    if score_name == 'Biased Writing Style':
+                        return score
 
