@@ -39,11 +39,7 @@ export function handleSearch() {
     return;
   }
 
-  processUserSearch(this.state.searchQuery).then(res => {
-    if (res.data === "Okey") {
-      this.setState({ articleSearched: true });
-    }
-  });
+  this.setState({ articleSearched: true });
 }
 
 // Render article page
@@ -72,4 +68,42 @@ export function enterPressed(event) {
   if (code === 13) {
     this.handleSearch();
   }
+}
+
+export async function getArticleInformation() {
+  await getArticle(this.state.url).then(res => {
+    this.setState({
+      title: res.data.article_title,
+      article_text: res.data.article_content,
+      article_reliability_score: res.data.article_reliability,
+      article_paragraphs: res.data.article_paragraphs,
+      citation_links: res.data.citation_links
+    });
+  });
+  // Obtain author information
+  await getAuthor(this.state.url).then(res => {
+    this.setState({
+      author_name: res.data.author_name,
+      author_introduction: res.data.author_introduction,
+      author_reliability_score: res.data.author_reliability_score,
+      author_link: res.data.author_link
+    });
+  });
+
+  // Obtain publisher information
+  await getPublisher(this.state.url).then(res => {
+    this.setState({
+      publisher_name: res.data.publisher_name,
+      publisher_introduction: res.data.publisher_introduction,
+      publisher_reliability_score: res.data.publisher_reliability_score,
+      publisher_link: res.data.publisher_link
+    });
+  });
+  // Obtain citation information
+  await getCitationInformation(this.state.url).then(res => {
+    this.setState({
+      citation_information: res.data
+    });
+  });
+  return true;
 }
