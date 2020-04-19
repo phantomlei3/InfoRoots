@@ -92,7 +92,7 @@ class authorSpide(scrapy.Spider):
         :return: one article URL that have domain
         '''
         test_domain = self.profile['domain'].replace("www.", "")
-        return "https://"+self.profile['domain']+URL
+        return "https://"+self.profile['domain']+"/"+URL.strip("/")
 
     def article_list_to_postgreSQL(self, article_lists):
         '''

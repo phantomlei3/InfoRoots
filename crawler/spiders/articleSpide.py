@@ -54,6 +54,8 @@ class articleSpide(scrapy.Spider):
         # author information
         author_name = response.css(self.profile["author_name"]+"::text").get() # tested
         author_page_link = response.css(self.profile["author_page_link"]).attrib["href"].strip("//") # tested
+        if self.profile["domain"] not in author_page_link:
+            author_page_link = self.add_domain_to_author_link(author_page_link)
 
         # store information in PostgreSQL articles Table
         self.database.insert_article(self.id, article_title, article_content,
@@ -85,7 +87,15 @@ class articleSpide(scrapy.Spider):
         return article_paragraphs
 
 
+    def add_domain_to_author_link(self, URL):
+        '''
+        Add domain to one author URLsbecause they do not have complete URLs
 
+        :param author_link: one author URL that require to add domain
+        :return: one author URL that have domain
+        '''
+        test_domain = self.profile['domain'].replace("www.", "")
+        return "https://"+self.profile['domain']+"/"+URL.strip("/")
 
     def get_citations(self, paragraphs):
         '''
