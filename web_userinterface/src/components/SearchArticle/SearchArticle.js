@@ -24,10 +24,12 @@ class SearchArticle extends React.Component {
       author_introduction: this.props.location.state.author_introduction,
       author_reliability_score: this.props.location.state
         .author_reliability_score,
+      author_link: this.props.location.state.author_link,
       publisher_name: this.props.location.state.publisher_name,
       publisher_introduction: this.props.location.state.publisher_introduction,
       publisher_reliability_score: this.props.location.state
         .publisher_reliability_score,
+      publisher_link: this.props.location.state.publisher_link,
       authorCardToggled: false,
       publisherCardToggled: false,
       citationDisplayed: false,
@@ -170,6 +172,7 @@ class SearchArticle extends React.Component {
                   author={this.state.author_name}
                   description={this.state.author_introduction}
                   credibility={this.state.author_reliability_score}
+                  author_link={this.state.author_link}
                   authorLink="http://google.com"
                 />
               )}
@@ -186,6 +189,7 @@ class SearchArticle extends React.Component {
                   publisher_reliability_score={
                     this.state.publisher_reliability_score
                   }
+                  publisher_link={this.state.publisher_link}
                   credibility={0.7}
                   publisherLink="http://google.com"
                 />

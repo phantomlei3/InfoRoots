@@ -25,7 +25,7 @@ class article:
         author_name, string
     '''
 
-    def __init__(self, url, check_citations="False"):
+    def __init__(self, url):
         '''
         :param url: the url of article link
         :param check_citations, boolean that requires article to check citations
@@ -34,7 +34,6 @@ class article:
         self.article_id = str(hashlib.md5(url.encode()).hexdigest())
         self.db = database()
         self.website_profiles = json.load(open("website_profiles/profiles.json"))
-        self.check_citations = check_citations
 
 
     def get(self):
@@ -63,7 +62,10 @@ class article:
         article_dict = dict()
 
         # get article website profile
-        url_domain = self.url.split("/")[2].strip()
+        try:
+            url_domain = self.url.split("/")[2].strip()
+        except:
+            return None
         if self.url.split("/")[2].strip() in self.website_profiles:
             profile = self.website_profiles[url_domain]
         else:
@@ -73,7 +75,7 @@ class article:
         article_info = self.db.lookup_article(self.article_id)
         if article_info is None:
             # crawl article information
-            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile, self.check_citations))
+            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile))
             p.start()
             p.join()
             article_info = self.db.lookup_article(self.article_id)
@@ -96,9 +98,9 @@ class article:
             if article_credibility is None:
                 # obtain article credibility information through NELAdapter
                 # solve unicode issue by ignoring unrecognized codes
-                NELA_title = unidecode.unidecode(article_dict["article_title"])
-                NELA_content = unidecode.unidecode(article_dict["article_content"])
-                NELA_article = NELAdapter(NELA_title, NELA_content)
+                # NELA_title = unidecode.unidecode()
+                # NELA_content = unidecode.unidecode()
+                NELA_article = NELAdapter(article_dict["article_title"], article_dict["article_content"])
                 self.db.insert_article_credibility(self.article_id, NELA_article.get_reliability_score(), NELA_article.get_bias_score())
                 article_credibility = self.db.lookup_article_credibility(self.article_id)
 
@@ -111,14 +113,14 @@ class article:
         return article_dict
 
 
-def thread_article_crawl(id, url, profile, check_citations):
+def thread_article_crawl(id, url, profile):
     '''
     A helper thread function for article crawl
     :param profile: a profile of publisher website that this article belongs to
     :param conn_string: a psycopg2 connection setup string
     '''
     process = CrawlerProcess(get_project_settings())
-    process.crawl('articles', id=id, url=url, profile=profile, check_citations=check_citations)
+    process.crawl('articles', id=id, url=url, profile=profile)
     process.start()
 
 

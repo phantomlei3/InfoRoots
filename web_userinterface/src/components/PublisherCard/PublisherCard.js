@@ -12,7 +12,7 @@ class PublisherCard extends React.Component {
           <div id="publisher-profile-link">
             <a
               id="publisher-link-a"
-              href="https://github.com/phantomlei3/InfoRoots"
+              href={this.props.publisher_link}
               target="_blank"
               rel="noopener noreferrer"
             >

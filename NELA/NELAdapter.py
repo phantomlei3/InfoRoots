@@ -8,12 +8,23 @@ NELA toolkits does not have any class, so we will directly use its function to f
 '''
 
 from NELA.credibility_toolkit import parse_text
+import math
 
 
 class NELAdapter:
 
     def __init__(self, article_title, article_content):
+        # decode title and content
+        # decoded_article_title = article_title.encode("gbk", 'ignore').decode("gbk", "ignore")
+        # decoded_article_content = article_content.encode("gbk", 'ignore').decode("gbk", "ignore")
         self.NELA = parse_text(article_title, article_content)
+
+
+    def scale_factor(self, value):
+        # new_value = value * 2.22 - 0.88
+        # if new_value < 0:
+        #     return 0
+        return value
 
     def get_reliability_score(self):
         '''
@@ -22,7 +33,9 @@ class NELAdapter:
         '''
         for item in self.NELA:
             if item["name"] == "fake_filter":
-                return item["result"][1][1]
+                for score_name, score in item["result"]:
+                    if score_name == 'Reliable Writing Style':
+                        return score
 
     def get_bias_score(self):
         '''
@@ -31,5 +44,7 @@ class NELAdapter:
         '''
         for item in self.NELA:
             if item["name"] == "bias_filter":
-                return item["result"][1][1]
+                for score_name, score in item["result"]:
+                    if score_name == 'Biased Writing Style':
+                        return score
 

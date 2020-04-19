@@ -1,10 +1,10 @@
 import math
 
-from readability_utils import get_char_count
-from readability_utils import get_words
-from readability_utils import get_sentences
-from readability_utils import count_syllables
-from readability_utils import count_complex_words
+from NELA.readability_utils import get_char_count
+from NELA.readability_utils import get_words
+from NELA.readability_utils import get_sentences
+from NELA.readability_utils import count_syllables
+from NELA.readability_utils import count_complex_words
 
 
 class Readability:

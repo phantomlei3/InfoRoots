@@ -16,8 +16,10 @@ class LoadingPage extends React.Component {
       author_name: "",
       author_introduction: "",
       author_reliability_score: 0,
+      author_link: "",
       publisher_name: "",
       publisher_introduction: "",
+      publisher_link: "",
       article_paragraphs: [],
       citation_links: [],
       citation_information: [],
@@ -45,28 +47,33 @@ class LoadingPage extends React.Component {
 
   // Render article page
   renderArticlePage = () => {
-    return (
-      <Redirect
-        to={{
-          pathname: "/article",
-          state: {
-            url: this.state.url,
-            title: this.state.title,
-            article_text: this.state.article_text,
-            article_reliability_score: this.state.article_reliability_score,
-            article_paragraphs: this.state.article_paragraphs,
-            citation_links: this.state.citation_links,
-            citation_information: this.state.citation_information,
-            author_name: this.state.author_name,
-            author_introduction: this.state.author_introduction,
-            author_reliability_score: this.state.author_reliability_score,
-            publisher_name: this.state.publisher_name,
-            publisher_introduction: this.state.publisher_introduction,
-            publisher_reliability_score: this.state.publisher_reliability_score
-          }
-        }}
-      />
-    );
+    if (this.state.recievedResponse) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/article",
+            state: {
+              url: this.state.url,
+              title: this.state.title,
+              article_text: this.state.article_text,
+              article_reliability_score: this.state.article_reliability_score,
+              article_paragraphs: this.state.article_paragraphs,
+              citation_links: this.state.citation_links,
+              citation_information: this.state.citation_information,
+              author_name: this.state.author_name,
+              author_introduction: this.state.author_introduction,
+              author_reliability_score: this.state.author_reliability_score,
+              author_link: this.state.author_link,
+              publisher_name: this.state.publisher_name,
+              publisher_introduction: this.state.publisher_introduction,
+              publisher_reliability_score: this.state
+                .publisher_reliability_score,
+              publisher_link: this.state.publisher_link
+            }
+          }}
+        />
+      );
+    }
   };
 
   // Render home page

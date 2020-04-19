@@ -12,7 +12,7 @@ class AuthorCard extends React.Component {
           <div id="author-profile-link">
             <a
               id="author-link-a"
-              href="https://github.com/phantomlei3/InfoRoots"
+              href={this.props.author_link}
               target="_blank"
               rel="noopener noreferrer"
             >
