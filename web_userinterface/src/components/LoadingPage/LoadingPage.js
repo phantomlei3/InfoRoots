@@ -100,10 +100,12 @@ class LoadingPage extends React.Component {
               author_name: this.state.author_name,
               author_introduction: this.state.author_introduction,
               author_reliability_score: this.state.author_reliability_score,
+              author_link: this.state.author_link,
               publisher_name: this.state.publisher_name,
               publisher_introduction: this.state.publisher_introduction,
               publisher_reliability_score: this.state
-                .publisher_reliability_score
+                .publisher_reliability_score,
+              publisher_link: this.state.publisher_link
             }
           }}
         />
