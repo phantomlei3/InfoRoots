@@ -27,7 +27,4 @@ def fake_fitler(featurepath):
     # combine results with writing styles list
     result = [(styles[i], x) for i,x in enumerate(result)]
 
-
-    print (result)
-
     return result
