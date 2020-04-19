@@ -32,7 +32,7 @@
         "author_page_link": "a.css-brehiz",
         "author_intro": "h2.css-n6o8m2 span p",
         "author_article_list": "div.css-1cp3ece div.css-1l4spti a::attr(href)",
-        "NewsGuard:": "https://api.newsguardtech.com/A11D87696D98A119EC6CD6A4318E5C237CC6C6A80FF77AE348D11D13A6F977DEBCF52F0E1967843733E0CCFD364CC04AE16C4A1658566FBD?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/A11D87696D98A119EC6CD6A4318E5C237CC6C6A80FF77AE348D11D13A6F977DEBCF52F0E1967843733E0CCFD364CC04AE16C4A1658566FBD?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
     },
 
 
@@ -45,7 +45,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a::attr(href)",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -58,7 +58,7 @@
          "author_page_link": "a.gnt_ar_by_a",
          "author_intro": "div.bio-7",
          "author_article_list": "promo-story-thumb-small::attr(url)",
-         "NewsGuard:": "https://api.newsguardtech.com/0E6F317B3D3CEF746C20DDDE95A37EAFBF4042B02021DFEB80E75501A8844A50706144BF604E953C79E6E5784E5C4C8D58130AEE548D9EEE?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+         "NewsGuard": "https://api.newsguardtech.com/0E6F317B3D3CEF746C20DDDE95A37EAFBF4042B02021DFEB80E75501A8844A50706144BF604E953C79E6E5784E5C4C8D58130AEE548D9EEE?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
      },
 
     "www.foxnews.com": {
@@ -70,7 +70,7 @@
         "author_page_link": "div.author-byline span span a",
         "author_intro": "Wrong",
         "author_article_list": "Wrong",
-        "NewsGuard:": "https://api.newsguardtech.com/6DACB6F00B45F40CF0F984033ABC4E31B5701AF90A3AE0EE48B72EBA9A7B0034A3BCEB2277B3A82531B7E7E8A7EF8B3B93A0BD9EAB482C32?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/6DACB6F00B45F40CF0F984033ABC4E31B5701AF90A3AE0EE48B72EBA9A7B0034A3BCEB2277B3A82531B7E7E8A7EF8B3B93A0BD9EAB482C32?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -83,7 +83,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -96,7 +96,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -109,7 +109,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -122,7 +122,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     },
 
@@ -135,7 +135,7 @@
         "author_page_link": "div p span.Article-Author a",
         "author_intro": "None",
         "author_article_list": "div.f-tabbed-list-content div.f-p-title h2 a",
-        "NewsGuard:": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
+        "NewsGuard": "https://api.newsguardtech.com/0AC6D638762E582ADD1E73CEF65C81A308AA9BDB2368BBDB6CA08FDF3CD33775811E2E7BF9EF014277116BC69992AD078371BD888A8DD995?cid=09eedf66-3d5e-4fc0-9a75-4f80f946f1b6"
 
     }
 }
