@@ -85,7 +85,8 @@ export async function getArticleInformation() {
     this.setState({
       author_name: res.data.author_name,
       author_introduction: res.data.author_introduction,
-      author_reliability_score: res.data.author_reliability_score
+      author_reliability_score: res.data.author_reliability_score,
+      author_link: res.data.author_link
     });
   });
 
@@ -94,7 +95,8 @@ export async function getArticleInformation() {
     this.setState({
       publisher_name: res.data.publisher_name,
       publisher_introduction: res.data.publisher_introduction,
-      publisher_reliability_score: res.data.publisher_reliability_score
+      publisher_reliability_score: res.data.publisher_reliability_score,
+      publisher_link: res.data.publisher_link
     });
   });
   // Obtain citation information
