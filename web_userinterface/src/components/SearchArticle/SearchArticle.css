@@ -4,7 +4,7 @@
 }
 
 .intro-container {
-  height: 320px;
+  height: 408px;
   width: 100%;
   background-color: grey;
   color: white;
@@ -35,7 +35,8 @@ span {
 
 #title-container {
   position: relative;
-  top: 16%;
+  top: 18%;
+  height: 160px;
   font-size: 32px;
   margin-left: 12%;
   font-weight: 600;
@@ -46,7 +47,7 @@ span {
   position: relative;
   margin-left: 12%;
   margin-top: 12px;
-  top: 22%;
+  top: 16%;
   font-size: 24px;
   font-weight: lighter;
 }
@@ -67,7 +68,7 @@ span {
   position: relative;
   margin-left: 12%;
   margin-top: 12px;
-  top: 22%;
+  top: 18%;
   font-size: 24px;
 }
 

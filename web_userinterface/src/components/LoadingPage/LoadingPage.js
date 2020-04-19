@@ -99,7 +99,7 @@ class LoadingPage extends React.Component {
         </h1>
         <CountdownCircleTimer
           isPlaying
-          durationSeconds={10}
+          durationSeconds={5}
           colors={[["#515151", 10]]}
           renderTime={this.renderTime}
           onComplete={() => {

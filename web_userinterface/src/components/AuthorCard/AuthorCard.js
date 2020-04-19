@@ -8,7 +8,7 @@ class AuthorCard extends React.Component {
     return (
       <div className="author_card">
         <div id="author">
-          {this.props.author}
+          <div id="author-name">{this.props.author}</div>
           <div id="author-profile-link">
             <a
               id="author-link-a"
