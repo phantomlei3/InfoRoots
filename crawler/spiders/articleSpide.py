@@ -52,7 +52,7 @@ class articleSpide(scrapy.Spider):
 
         # author information
         author_name = response.css(self.profile["author_name"]+"::text").get() # tested
-        author_page_link = response.css(self.profile["author_page_link"]).attrib["href"].strip("//") # tested
+        author_page_link = response.css(self.profile["author_page_link"]+"::attr(href)").get().strip("//") # tested
         if self.profile["domain"] not in author_page_link:
             author_page_link = self.add_domain_to_author_link(author_page_link)
 

@@ -17,7 +17,8 @@ class NELAdapter:
         # decode title and content
         # decoded_article_title = article_title.encode("gbk", 'ignore').decode("gbk", "ignore")
         # decoded_article_content = article_content.encode("gbk", 'ignore').decode("gbk", "ignore")
-        self.NELA = parse_text(article_title, article_content)
+        self.NELA = parse_text(article_title, article_content.replace(u"\u2022", u" "))
+
 
 
     def scale_factor(self, value):
