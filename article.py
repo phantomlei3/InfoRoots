@@ -25,7 +25,7 @@ class article:
         author_name, string
     '''
 
-    def __init__(self, url, check_citations="False"):
+    def __init__(self, url):
         '''
         :param url: the url of article link
         :param check_citations, boolean that requires article to check citations
@@ -34,7 +34,6 @@ class article:
         self.article_id = str(hashlib.md5(url.encode()).hexdigest())
         self.db = database()
         self.website_profiles = json.load(open("website_profiles/profiles.json"))
-        self.check_citations = check_citations
 
 
     def get(self):
@@ -76,7 +75,7 @@ class article:
         article_info = self.db.lookup_article(self.article_id)
         if article_info is None:
             # crawl article information
-            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile, self.check_citations))
+            p = Process(target=thread_article_crawl, args=(self.article_id, self.url, profile))
             p.start()
             p.join()
             article_info = self.db.lookup_article(self.article_id)
@@ -121,7 +120,7 @@ def thread_article_crawl(id, url, profile, check_citations):
     :param conn_string: a psycopg2 connection setup string
     '''
     process = CrawlerProcess(get_project_settings())
-    process.crawl('articles', id=id, url=url, profile=profile, check_citations=check_citations)
+    process.crawl('articles', id=id, url=url, profile=profile)
     process.start()
 
 

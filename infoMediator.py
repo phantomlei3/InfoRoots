@@ -123,7 +123,7 @@ class infoMediator:
         '''
 
         # set up article class
-        new_article = article(self.URL, check_citations="True")
+        new_article = article(self.URL)
         article_result = new_article.get()
         if article_result is not None:
             self.URL_status = True

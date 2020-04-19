@@ -18,7 +18,6 @@ class articleSpide(scrapy.Spider):
         self.url = kw.get('url')  # one URL from user input
         self.database = database()
         self.profile = kw.get('profile') # profile of crawler for this website
-        self.check_citations = kw.get('check_citations')
 
 
     def start_requests(self):
@@ -62,9 +61,8 @@ class articleSpide(scrapy.Spider):
                                              publisher_name, author_name, author_page_link)
 
         # if citations is required to check, store citation information
-        if self.check_citations == "True":
-            citations = self.get_citations(raw_article_content)
-            self.database.insert_citation(self.id, clean_paragraphs, citations)
+        citations = self.get_citations(raw_article_content)
+        self.database.insert_citation(self.id, clean_paragraphs, citations)
 
 
 
