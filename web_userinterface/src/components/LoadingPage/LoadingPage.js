@@ -1,7 +1,12 @@
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Redirect } from "react-router-dom";
-import { getArticle, getAuthor, getPublisher } from "../../api.js";
+import {
+  getArticle,
+  getAuthor,
+  getPublisher,
+  getCitationInformation
+} from "../../api.js";
 import "./LoadingPage.css";
 import InfoRootsLogo from "../../static/logo.png";
 
@@ -20,6 +25,7 @@ class LoadingPage extends React.Component {
       publisher_introduction: "",
       article_paragraphs: [],
       citation_links: [],
+      citation_information: [],
       recievedResponse: false
     };
 
@@ -48,6 +54,13 @@ class LoadingPage extends React.Component {
       this.setState({
         publisher_name: res.data.publisher_name,
         publisher_introduction: res.data.publisher_introduction
+      });
+    });
+
+    // Obtain citation information
+    getCitationInformation(this.state.url).then(res => {
+      this.setState({
+        citation_information: res.data
       });
     });
   }
@@ -80,6 +93,7 @@ class LoadingPage extends React.Component {
               article_reliability_score: this.state.article_reliability_score,
               article_paragraphs: this.state.article_paragraphs,
               citation_links: this.state.citation_links,
+              citation_information: this.state.citation_information,
               author_name: this.state.author_name,
               author_introduction: this.state.author_introduction,
               author_reliability_score: this.state.author_reliability_score,

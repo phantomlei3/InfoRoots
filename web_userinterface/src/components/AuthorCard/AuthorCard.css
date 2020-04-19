@@ -70,6 +70,8 @@
   font-style: normal;
   position: relative;
   top: 3px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .react-rater-star.is-active {

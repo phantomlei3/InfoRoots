@@ -22,7 +22,7 @@ class PublisherCard extends React.Component {
         </div>
         <div id="description">{this.props.publisher_introduction}</div>
         <div id="credibility">
-          credibility
+          <span id="credibility-text">credibility</span>
           <Rater total={5} interactive={false} rating={0.8 * 5} />
         </div>
       </div>

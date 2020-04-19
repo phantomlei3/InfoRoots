@@ -22,7 +22,7 @@ class AuthorCard extends React.Component {
         </div>
         <div id="description">{this.props.description}</div>
         <div id="credibility">
-          credibility
+          <span id="credibility-text">credibility</span>
           <Rater
             total={5}
             interactive={false}
