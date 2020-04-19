@@ -150,6 +150,8 @@ class infoMediator:
                 self.author_card["author_introduction"] = author_result["author_intro"]
                 self.author_card["author_reliability_score"] = author_result["author_reliability"]
                 self.author_card["author_bias_score"] = author_result["author_bias"]
+                self.author_card["author_link"] = author_result["author_link"]
+
             else:
                 self.author_card = None
 
@@ -165,6 +167,7 @@ class infoMediator:
                 self.publisher_card["publisher_name"] = publisher_result["publisher_name"]
                 self.publisher_card["publisher_introduction"] = publisher_result["publisher_intro"]
                 self.publisher_card["publisher_reliability_score"] = publisher_result["publisher_reliability_score"]
+                self.publisher_card["publisher_link"] = publisher_result["publisher_link"]
 
             # set up citation network class
             new_citation_network = citationsNetwork(article_result["article_id"])

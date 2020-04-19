@@ -44,6 +44,7 @@ class authorCard:
                 "'author_intro':   "
                 "'author_reliability':   "
                 "'author_bias':    "
+                "'author_link':   "
         :return None if any error existed in crawler and database
         '''
 
@@ -72,6 +73,7 @@ class authorCard:
 
         author_dict["author_reliability"] = author_credibility[0]
         author_dict["author_bias"] = author_credibility[1]
+        author_dict["author_link"] = self.author_page_link
 
         return author_dict
 
