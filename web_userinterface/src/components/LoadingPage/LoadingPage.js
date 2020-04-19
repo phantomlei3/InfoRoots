@@ -1,12 +1,7 @@
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Redirect } from "react-router-dom";
-import {
-  getArticle,
-  getAuthor,
-  getPublisher,
-  getCitationInformation
-} from "../../api.js";
+import { processUserSearch, getArticleInformation } from "../../api.js";
 import "./LoadingPage.css";
 import InfoRootsLogo from "../../static/logo.png";
 
@@ -14,7 +9,7 @@ class LoadingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: props.location.state.url,
+      url: decodeURIComponent(props.location.state.url),
       title: "",
       article_text: "",
       article_reliability_score: "",
@@ -26,93 +21,75 @@ class LoadingPage extends React.Component {
       article_paragraphs: [],
       citation_links: [],
       citation_information: [],
-      recievedResponse: false
+      validSearch: 0,
+      errorMessage: false,
+      redirect: false
     };
-
-    // Obtain article information
-    getArticle(this.state.url).then(res => {
-      this.setState({
-        title: res.data.article_title,
-        article_text: res.data.article_content,
-        article_reliability_score: res.data.article_reliability,
-        article_paragraphs: res.data.article_paragraphs,
-        citation_links: res.data.citation_links
-      });
-    });
-
-    // Obtain author information
-    getAuthor(this.state.url).then(res => {
-      this.setState({
-        author_name: res.data.author_name,
-        author_introduction: res.data.author_introduction,
-        author_reliability_score: res.data.author_reliability_score
-      });
-    });
-
-    // Obtain publisher information
-    getPublisher(this.state.url).then(res => {
-      this.setState({
-        publisher_name: res.data.publisher_name,
-        publisher_introduction: res.data.publisher_introduction,
-        publisher_reliability_score: res.data.publisher_reliability_score
-      });
-    });
-
-    // Obtain citation information
-    getCitationInformation(this.state.url).then(res => {
-      this.setState({
-        citation_information: res.data
-      });
-    });
   }
 
   renderTime = value => {
-    if (value === 0) {
-      return <div className="timer">done...</div>;
-    }
-
     return (
       <div className="timer">
-        <div className="text">Remaining</div>
-        <div className="value">{value}</div>
-        <div className="text">seconds</div>
+        <div className="value">Loading...</div>
       </div>
     );
   };
 
-  // Render article page
-  renderArticlePage = () => {
-    if (this.state.recievedResponse) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/article",
-            state: {
-              url: this.state.url,
-              title: this.state.title,
-              article_text: this.state.article_text,
-              article_reliability_score: this.state.article_reliability_score,
-              article_paragraphs: this.state.article_paragraphs,
-              citation_links: this.state.citation_links,
-              citation_information: this.state.citation_information,
-              author_name: this.state.author_name,
-              author_introduction: this.state.author_introduction,
-              author_reliability_score: this.state.author_reliability_score,
-              publisher_name: this.state.publisher_name,
-              publisher_introduction: this.state.publisher_introduction,
-              publisher_reliability_score: this.state
-                .publisher_reliability_score
-            }
-          }}
-        />
-      );
+  redirectHandler = () => {
+    if (this.state.validSearch === 1 && this.state.redirect === true) {
+      return this.renderArticlePage();
+    } else if (this.state.validSearch === 2 && this.state.redirect === true) {
+      return this.renderHomePage();
     }
   };
+
+  // Render article page
+  renderArticlePage = () => {
+    return (
+      <Redirect
+        to={{
+          pathname: "/article",
+          state: {
+            url: this.state.url,
+            title: this.state.title,
+            article_text: this.state.article_text,
+            article_reliability_score: this.state.article_reliability_score,
+            article_paragraphs: this.state.article_paragraphs,
+            citation_links: this.state.citation_links,
+            citation_information: this.state.citation_information,
+            author_name: this.state.author_name,
+            author_introduction: this.state.author_introduction,
+            author_reliability_score: this.state.author_reliability_score,
+            publisher_name: this.state.publisher_name,
+            publisher_introduction: this.state.publisher_introduction,
+            publisher_reliability_score: this.state.publisher_reliability_score
+          }
+        }}
+      />
+    );
+  };
+
+  // Render home page
+  renderHomePage = () => {
+    return <Redirect to={{ pathname: "/" }} />;
+  };
+
+  componentDidMount() {
+    processUserSearch.call(this, this.state.url).then(res => {
+      if (res.data === "Failed") {
+        this.setState({ validSearch: 2, errorMessage: true });
+      } else if (res.data === "Okey") {
+        getArticleInformation.call(this).then(res => {
+          this.setState({ validSearch: 1 });
+        });
+      }
+    });
+  }
 
   render() {
     return (
       <div className="loading">
-        {this.renderArticlePage()}
+        {this.redirectHandler()}
         <div id="loading-logo">
           <img src={InfoRootsLogo} id="logo" alt="InfoRoots Logo" />
         </div>
@@ -126,11 +103,18 @@ class LoadingPage extends React.Component {
           colors={[["#515151", 10]]}
           renderTime={this.renderTime}
           onComplete={() => {
-            this.setState({ recievedResponse: true });
-            return [true, 1000];
+            this.setState({ redirect: true });
+            return [true, 0];
           }}
         />
-        <p className="info"></p>
+        {this.state.errorMessage && (
+          <div id="error-message">
+            <div id="sorry">
+              Sorry, our system cannot recognize and process the given URL
+            </div>
+            <div id="return"> Returning to home... </div>
+          </div>
+        )}
       </div>
     );
   }

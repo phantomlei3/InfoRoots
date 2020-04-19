@@ -4,7 +4,6 @@ import { Icon } from "@iconify/react";
 import magnifyingGlass from "@iconify/icons-oi/magnifying-glass";
 import InfoRootsLogo from "../../static/logo.png";
 import {
-  processUserSearch,
   handleSearch,
   renderArticlePage,
   setSearchQuery,
@@ -20,7 +19,6 @@ class Homepage extends React.Component {
     };
   }
 
-  processUserSearch = processUserSearch.bind(this);
   handleSearch = handleSearch.bind(this);
   renderArticlePage = renderArticlePage.bind(this);
   setSearchQuery = setSearchQuery.bind(this);
