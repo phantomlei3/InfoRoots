@@ -21,10 +21,10 @@ class NELAdapter:
 
 
     def scale_factor(self, value):
-        new_value = value * 2.22 - 0.88
-        if new_value < 0:
-            return 0
-        return new_value
+        # new_value = value * 2.22 - 0.88
+        # if new_value < 0:
+        #     return 0
+        return value
 
     def get_reliability_score(self):
         '''
