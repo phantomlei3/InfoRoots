@@ -65,7 +65,7 @@
     "www.zerohedge.com": {
         "domain": "www.zerohedge.com",
         "name": "ZeroHedge",
-        "article_title": "h1.page-title",
+        "article_title": "h1.page-title span",
         "article_content": "div.node__content p",
         "author_name": "div.submitted-username a",
         "author_page_link": "div.submitted-username a",
