@@ -116,7 +116,7 @@ class authorCard:
 
         :param author_article_list, a list of article link from this author
         '''
-        # use at most recently 3 article to generate reliability and bias score for author
+        # use at most recently 5 article to generate reliability and bias score for author
         accumlated_reliability= list()
         accumlated_bias = list()
         for article_link in author_article_list:
@@ -132,7 +132,7 @@ class authorCard:
                 accumlated_reliability.append(article_result["article_reliability"])
                 accumlated_bias.append(article_result["article_bias"])
 
-            if len(accumlated_reliability) >= 3:
+            if len(accumlated_reliability) >= 5:
                 break
 
         if len(accumlated_reliability) != 0:
